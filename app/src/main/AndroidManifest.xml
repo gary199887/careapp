@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ListActivity"></activity>
         <activity
             android:name=".AddUserActivity"
-            android:label="新增使用者"></activity>
+            android:label="新增使用者" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
