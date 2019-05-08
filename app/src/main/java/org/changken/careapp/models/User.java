@@ -3,32 +3,28 @@ package org.changken.careapp.models;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
-    @SerializedName("Id")
-    private Integer id;
-
-    @SerializedName("Name")
+    @SerializedName("user_name")
     private String name;
 
-    @SerializedName("IdNumber")
+    @SerializedName("user_id")
     private String idNumber;
 
-    @SerializedName("Password")
+    @SerializedName("user_password")
     private String password;
 
-    @SerializedName("Email")
+    @SerializedName("user_email")
     private String email;
 
-    @SerializedName("Phone")
+    @SerializedName("user_phone")
     private String phone;
 
-    @SerializedName("Address")
+    @SerializedName("user_address")
     private String address;
 
-    @SerializedName("Birthday")
+    @SerializedName("user_birthday")
     private String birthday;
 
     public User(String name, String idNumber, String password, String email, String phone, String address, String birthday) {
-        this.id = null;
         this.name = name;
         this.idNumber = idNumber;
         this.password = password;
@@ -36,10 +32,6 @@ public class User {
         this.phone = phone;
         this.address = address;
         this.birthday = birthday;
-    }
-
-    public int getId(){
-        return id;
     }
 
     public String getName() {

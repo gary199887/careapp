@@ -43,7 +43,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Response<User> userResponse = mData.get(position);
 
-        holder.userId.setText(userResponse.getFields().getId() + "");
+        holder.userId.setText(userResponse.getFields().getIdNumber());
         holder.userName.setText(userResponse.getFields().getName());
         holder.userEmail.setText(userResponse.getFields().getEmail());
     }
