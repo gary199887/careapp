@@ -1,6 +1,8 @@
-package org.changken.careapp.models;
+package org.changken.careapp.datamodels;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class User {
     @SerializedName("user_name")
@@ -24,6 +26,9 @@ public class User {
     @SerializedName("user_birthday")
     private String birthday;
 
+    @SerializedName("res_id")
+    private List<String> resId;
+
     public User(String name, String idNumber, String password, String email, String phone, String address, String birthday) {
         this.name = name;
         this.idNumber = idNumber;
@@ -32,6 +37,7 @@ public class User {
         this.phone = phone;
         this.address = address;
         this.birthday = birthday;
+        resId = null;
     }
 
     public String getName() {
@@ -88,5 +94,13 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public List<String> getResId() {
+        return resId;
+    }
+
+    public void setResId(List<String> resId) {
+        this.resId = resId;
     }
 }

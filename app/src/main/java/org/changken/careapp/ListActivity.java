@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import org.changken.careapp.adapter.MyListAdapter;
-import org.changken.careapp.models.User;
-import org.changken.careapp.models.UserConvert;
+import org.changken.careapp.datamodels.User;
+import org.changken.careapp.tools.UserConvert;
 import org.changken.careapp.tools.Http;
-import org.changken.careapp.tools.ListResponse;
-import org.changken.careapp.tools.Response;
+import org.changken.careapp.datamodels.AirTableListResponse;
+import org.changken.careapp.datamodels.AirTableResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class ListActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     MyListAdapter myListAdapter;
 
-    List<Response<User>> data;
+    List<AirTableResponse<User>> data;
     UserConvert userConvert;
     Http http;
 
@@ -34,7 +33,7 @@ public class ListActivity extends AppCompatActivity {
     protected void initial() {
         userConvert = new UserConvert();
         http = new Http(BuildConfig.AIRTABLE_API_KEY);
-        data = new ArrayList<Response<User>>();
+        data = new ArrayList<AirTableResponse<User>>();
 
         //從網路撈資料一定只能用thread
         new GetDataTask().execute("https://api.airtable.com/v0/" + BuildConfig.AIRTABLE_BASE_ID + "/user?pageSize=10&view=Grid%20view");
@@ -83,13 +82,13 @@ public class ListActivity extends AppCompatActivity {
             //Log.i("ListActivity", "[listResponse] " + sb.toString());
 
             //轉換Json字串
-            ListResponse<User> userListResponse = userConvert.getListResponse(sb.toString());
+            AirTableListResponse<User> userListResponse = userConvert.getListResponse(sb.toString());
 
             //取得每筆使用者的資料
             data = userListResponse.getRecords();
 
-            //看看List<Response<User>>的廬山真面目
-            //Log.i("ListActivity", "[List<Response<User>>] " + data.getClass().getTypeName());
+            //看看List<AirTableResponse<User>>的廬山真面目
+            //Log.i("ListActivity", "[List<AirTableResponse<User>>] " + data.getClass().getTypeName());
 
             //更新串列資料
             myListAdapter.updateData(data);

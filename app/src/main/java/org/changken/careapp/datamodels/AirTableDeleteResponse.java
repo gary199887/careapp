@@ -1,11 +1,11 @@
-package org.changken.careapp.tools;
+package org.changken.careapp.datamodels;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * For D
  * */
-public class DeleteResponse {
+public class AirTableDeleteResponse {
     @SerializedName("id")
     private String id;
 

@@ -1,15 +1,15 @@
-package org.changken.careapp.tools;
+package org.changken.careapp.datamodels;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * For CU
  * */
-public class Request<T> {
+public class AirTableRequest<T> {
     @SerializedName("fields")
     private T fields;
 
-    public Request(T fields) {
+    public AirTableRequest(T fields) {
         this.fields = fields;
     }
 

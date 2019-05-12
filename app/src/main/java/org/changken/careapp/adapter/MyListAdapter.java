@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.changken.careapp.R;
-import org.changken.careapp.models.User;
-import org.changken.careapp.tools.Response;
+import org.changken.careapp.datamodels.User;
+import org.changken.careapp.datamodels.AirTableResponse;
 
 import java.util.List;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
     private Context mContext;
-    private List<Response<User>> mData;
+    private List<AirTableResponse<User>> mData;
 
-    public MyListAdapter(Context context, List<Response<User>> data){
+    public MyListAdapter(Context context, List<AirTableResponse<User>> data){
         mContext = context;
         mData = data;
     }
@@ -41,7 +41,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Response<User> userResponse = mData.get(position);
+        AirTableResponse<User> userResponse = mData.get(position);
 
         holder.userId.setText(userResponse.getFields().getIdNumber());
         holder.userName.setText(userResponse.getFields().getName());
@@ -56,7 +56,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     /**
      * 更新串列資料
      * */
-    public void updateData(List<Response<User>> data){
+    public void updateData(List<AirTableResponse<User>> data){
         mData.clear();
         mData.addAll(data);
         notifyDataSetChanged();

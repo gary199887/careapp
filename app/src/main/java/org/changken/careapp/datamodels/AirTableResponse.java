@@ -1,11 +1,11 @@
-package org.changken.careapp.tools;
+package org.changken.careapp.datamodels;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * For CRU
  * */
-public class Response<T> {
+public class AirTableResponse<T> {
     @SerializedName("id")
     private String id;
 

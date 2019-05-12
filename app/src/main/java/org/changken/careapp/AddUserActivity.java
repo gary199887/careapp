@@ -9,17 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.changken.careapp.models.User;
-import org.changken.careapp.models.UserConvert;
+import org.changken.careapp.datamodels.AirTableResponse;
+import org.changken.careapp.datamodels.User;
+import org.changken.careapp.models.UserModel;
+import org.changken.careapp.tools.UserConvert;
 import org.changken.careapp.tools.Http;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddUserActivity extends AppCompatActivity {
 
     EditText nameTextView, idNumberTextView, pwTextView,
             emailTextView, phoneTextView, addressTextView, birthdayTextView;
     Button submitButton;
-    Http http;
-    UserConvert userConvert;
+    UserModel userModel;
+    //Http http;
+    //UserConvert userConvert;
 
     /**
      * 初始化相關View元件
@@ -34,8 +40,10 @@ public class AddUserActivity extends AppCompatActivity {
         birthdayTextView = (EditText) findViewById(R.id.birthday_text_view);
 
         submitButton = (Button) findViewById(R.id.submit_button);
-        http = new Http(BuildConfig.AIRTABLE_API_KEY);
-        userConvert = new UserConvert();
+
+        userModel = new UserModel();
+        //http = new Http(BuildConfig.AIRTABLE_API_KEY);
+        //userConvert = new UserConvert();
     }
 
     @Override
@@ -48,7 +56,7 @@ public class AddUserActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userJson = userConvert.setRequest(
+                /*String userJson = userConvert.setRequest(
                         new User(nameTextView.getText().toString(),
                                 idNumberTextView.getText().toString(),
                                 pwTextView.getText().toString(),
@@ -56,15 +64,24 @@ public class AddUserActivity extends AppCompatActivity {
                                 phoneTextView.getText().toString(),
                                 addressTextView.getText().toString(),
                                 birthdayTextView.getText().toString()
-                        ));
+                        ));*/
                 //發送新增資料的請求
-                new SetDataTask().execute("https://api.airtable.com/v0/" + BuildConfig.AIRTABLE_BASE_ID + "/user", userJson);
+                AirTableResponse<User> response = userModel.add(new User(nameTextView.getText().toString(),
+                        idNumberTextView.getText().toString(),
+                        pwTextView.getText().toString(),
+                        emailTextView.getText().toString(),
+                        phoneTextView.getText().toString(),
+                        addressTextView.getText().toString(),
+                        birthdayTextView.getText().toString()
+                ));
+                Log.i("AddUserActivity", "[response] " + (response == null));
+                //new SetDataTask().execute("https://api.airtable.com/v0/" + BuildConfig.AIRTABLE_BASE_ID + "/user", userJson);
                 Toast.makeText(AddUserActivity.this, "新增成功!:)", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private class SetDataTask extends AsyncTask<String, Void, StringBuffer> {
+    /*private class SetDataTask extends AsyncTask<String, Void, StringBuffer> {
         @Override
         protected StringBuffer doInBackground(String... params) {
             //debug
@@ -77,5 +94,5 @@ public class AddUserActivity extends AppCompatActivity {
             //debug
             Log.i("AddUserActivity", "[Response]" + sb.toString());
         }
-    }
+    }*/
 }

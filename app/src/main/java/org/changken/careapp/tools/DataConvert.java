@@ -3,6 +3,11 @@ package org.changken.careapp.tools;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.changken.careapp.datamodels.AirTableDeleteResponse;
+import org.changken.careapp.datamodels.AirTableListResponse;
+import org.changken.careapp.datamodels.AirTableRequest;
+import org.changken.careapp.datamodels.AirTableResponse;
+
 import java.text.DateFormat;
 
 public abstract class DataConvert<T> {
@@ -17,22 +22,22 @@ public abstract class DataConvert<T> {
      *  CU
      * */
     public String setRequest(T data){
-        Request<T> request = new Request<>(data);
+        AirTableRequest<T> request = new AirTableRequest<>(data);
         return gson.toJson(request);
     }
 
     /**
      * RCU
      * */
-    abstract public Response<T> getResponse(String data);
+    abstract public AirTableResponse<T> getResponse(String data);
 
     /**
      * List
      * */
-    abstract public ListResponse<T> getListResponse(String data);
+    abstract public AirTableListResponse<T> getListResponse(String data);
 
-    public DeleteResponse getDeleteResponse(String data){
-        return gson.fromJson(data, DeleteResponse.class);
+    public AirTableDeleteResponse getDeleteResponse(String data){
+        return gson.fromJson(data, AirTableDeleteResponse.class);
     }
 
     protected String convertListResponse(String data){
