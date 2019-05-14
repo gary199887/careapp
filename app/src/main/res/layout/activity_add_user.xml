@@ -61,13 +61,27 @@
             android:hint="Address"
             android:inputType="textMultiLine" />
 
-        <EditText
-            android:id="@+id/birthday_text_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:hint="YYYY-MM-DD"
-            android:inputType="text" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/birthday_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="YYYY-MM-DD"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/data_picker_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="選擇" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/submit_button"

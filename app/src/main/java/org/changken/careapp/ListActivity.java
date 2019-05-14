@@ -1,42 +1,68 @@
 package org.changken.careapp;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import org.changken.careapp.adapter.MyListAdapter;
 import org.changken.careapp.datamodels.User;
-import org.changken.careapp.tools.UserConvert;
-import org.changken.careapp.tools.Http;
+import org.changken.careapp.models.UserModel;
 import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.AirTableResponse;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class ListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     MyListAdapter myListAdapter;
 
-    List<AirTableResponse<User>> data;
-    UserConvert userConvert;
-    Http http;
+    UserModel userModel;
 
     /**
      * 初始化元件
      */
     protected void initial() {
-        userConvert = new UserConvert();
-        http = new Http(BuildConfig.AIRTABLE_API_KEY);
-        data = new ArrayList<AirTableResponse<User>>();
+        userModel = new UserModel();
+
+        Map<String, String> queryMap = new HashMap<>();
+        queryMap.put("pageSize", "10");
+        queryMap.put("view", "Grid%20view");
 
         //從網路撈資料一定只能用thread
-        new GetDataTask().execute("https://api.airtable.com/v0/" + BuildConfig.AIRTABLE_BASE_ID + "/user?pageSize=10&view=Grid%20view");
+        Call<AirTableListResponse<User>> responseCall = userModel.list(queryMap);
+
+        //執行撈資料!
+        responseCall.enqueue(new Callback<AirTableListResponse<User>>() {
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ListActivity.this, "取得成功!", Toast.LENGTH_SHORT).show();
+                    //設定RecyclerView
+                    setRecyclerView(response.body().getRecords());
+                } else {
+                    Toast.makeText(ListActivity.this, "新增失敗!伺服器好像怪怪的唷~", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<AirTableListResponse<User>> call, Throwable t) {
+                Toast.makeText(ListActivity.this, "新增失敗!可能是網路沒有通唷~", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -50,7 +76,14 @@ public class ListActivity extends AppCompatActivity {
 
         //初始化元件
         initial();
+    }
 
+    /**
+     * 設定RecyclerView
+     *
+     * @param data List<AirTableResponse<User>>
+     */
+    private void setRecyclerView(List<AirTableResponse<User>> data) {
         //產生列表
         recyclerView = (RecyclerView) findViewById(R.id.list_view);
         recyclerView.setHasFixedSize(true);
@@ -66,32 +99,5 @@ public class ListActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         //綁定Adapter
         recyclerView.setAdapter(myListAdapter);
-    }
-
-    private class GetDataTask extends AsyncTask<String, Void, StringBuffer> {
-
-        @Override
-        protected StringBuffer doInBackground(String... urlAddress) {
-            //執行Http get動作
-            return http.doGet(urlAddress[0]);
-        }
-
-        @Override
-        protected void onPostExecute(StringBuffer sb) {
-            //debug用
-            //Log.i("ListActivity", "[listResponse] " + sb.toString());
-
-            //轉換Json字串
-            AirTableListResponse<User> userListResponse = userConvert.getListResponse(sb.toString());
-
-            //取得每筆使用者的資料
-            data = userListResponse.getRecords();
-
-            //看看List<AirTableResponse<User>>的廬山真面目
-            //Log.i("ListActivity", "[List<AirTableResponse<User>>] " + data.getClass().getTypeName());
-
-            //更新串列資料
-            myListAdapter.updateData(data);
-        }
     }
 }
