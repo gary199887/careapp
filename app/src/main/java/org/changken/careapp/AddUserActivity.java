@@ -27,10 +27,10 @@ import retrofit2.internal.EverythingIsNonNull;
 
 public class AddUserActivity extends AppCompatActivity {
 
-    EditText nameTextView, idNumberTextView, pwTextView,
-            emailTextView, phoneTextView, addressTextView, birthdayTextView;
-    Button submitButton, datePickerButton;
-    UserModel userModel;
+    private EditText nameTextView, idNumberTextView, pwTextView,
+            emailTextView, phoneTextView, addressTextView, birthdayEditText;
+    private Button submitButton, datePickerButton;
+    private UserModel userModel;
 
     /**
      * 初始化相關View元件
@@ -42,7 +42,7 @@ public class AddUserActivity extends AppCompatActivity {
         emailTextView = (EditText) findViewById(R.id.email_text_view);
         phoneTextView = (EditText) findViewById(R.id.phone_text_view);
         addressTextView = (EditText) findViewById(R.id.address_text_view);
-        birthdayTextView = (EditText) findViewById(R.id.birthday_text_view);
+        birthdayEditText = (EditText) findViewById(R.id.birthday_text_view);
 
         submitButton = (Button) findViewById(R.id.submit_button);
         datePickerButton = (Button) findViewById(R.id.data_picker_button);
@@ -70,7 +70,7 @@ public class AddUserActivity extends AppCompatActivity {
                     emailTextView.getText().toString(),
                     phoneTextView.getText().toString(),
                     addressTextView.getText().toString(),
-                    birthdayTextView.getText().toString()
+                    birthdayEditText.getText().toString()
             ));
 
             //執行新增資料
@@ -97,21 +97,31 @@ public class AddUserActivity extends AppCompatActivity {
     /**
      * 更新生日欄位
      *
-     * @param year int
-     * @param  month int
-     * @param day int
-     * */
-    public void setBirthdayTextView(int year, int month, int day){
+     * @param year  int
+     * @param month int
+     * @param day   int
+     */
+    public void setBirthdayEditText(int year, int month, int day) {
         String date = year + "-" + month + "-" + day;
-        birthdayTextView.setText(date);
+        birthdayEditText.setText(date);
     }
 
-    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+    /**
+     * 得到生日欄位
+     *
+     * @return String
+     */
+    public String getBirthdayEditText() {
+        return birthdayEditText.getText().toString();
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         private AddUserActivity mAddUserActivity;
 
         @Override
         public void onAttach(Context context) {
             super.onAttach(context);
+            //獲取AddUserActivity物件
             mAddUserActivity = (AddUserActivity) context;
         }
 
@@ -119,16 +129,27 @@ public class AddUserActivity extends AppCompatActivity {
         @Override
         public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            int year, month, day;
+
+            String birthday = mAddUserActivity.getBirthdayEditText();
+            String[] birthdayPart = birthday.split("-");
+
+            if (birthday.length() == 0) {
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+            } else {
+                year = Integer.parseInt(birthdayPart[0]);
+                month = Integer.parseInt(birthdayPart[1]) - 1;
+                day = Integer.parseInt(birthdayPart[2]);
+            }
 
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mAddUserActivity.setBirthdayTextView(year, month, dayOfMonth);
+            mAddUserActivity.setBirthdayEditText(year, month + 1, dayOfMonth);
         }
     }
 }
