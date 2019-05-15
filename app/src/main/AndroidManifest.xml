@@ -12,10 +12,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListActivity"></activity>
+        <activity
+            android:name=".MemberCenterActivity"
+            android:label="會員中心"
+            android:theme="@style/NavTheme"></activity>
+        <activity
+            android:name=".ForgetPasswordActivity"
+            android:label="忘記密碼">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".ListActivity"
+            android:label="列出所有使用者">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".AddUserActivity"
-            android:label="新增使用者" />
+            android:label="註冊">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,76 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="32dp"
+        android:text="醫療小管家"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="32dp"
+        android:background="@drawable/ic_launcher_background"
+        android:src="@android:drawable/ic_dialog_map" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/data_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="身分證字號:"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/idNumber_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="身分證字號"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="密碼:"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="密碼"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:layout_margin="32dp"
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="登入"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/reg_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Hi! Welcome to my app!"
-            android:textSize="22sp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_weight="1"
+            android:text="註冊"
+            android:textAppearance="?android:textAppearanceLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/forget_pw_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/forget_pw_text_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/get_data_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="list"
-                android:textSize="26sp" />
-
-            <Button
-                android:id="@+id/retrieve_data_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="retrieve"
-                android:textSize="26sp" />
-
-            <Button
-                android:id="@+id/add_data_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="add"
-                android:textSize="26sp" />
-
-            <Button
-                android:id="@+id/update_data_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="update"
-                android:textSize="26sp" />
-
-            <Button
-                android:id="@+id/delete_data_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="delete"
-                android:textSize="26sp" />
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+            android:text="忘記密碼"
+            android:textAppearance="?android:textAppearanceLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/reg_text_view"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

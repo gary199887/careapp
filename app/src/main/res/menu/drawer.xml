@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:checkableBehavior="single">
+    <item
+        android:id="@+id/member_center_item"
+        android:title="會員中心" />
+
+    <item
+        android:id="@+id/personal_info_item"
+        android:title="個人資料" />
+
+    <item
+        android:id="@+id/reg_item"
+        android:title="門診預約及掛號" />
+
+    <item
+        android:id="@+id/query_cancel_item"
+        android:title="查詢門診進度及取消預約" />
+
+    <item
+        android:id="@+id/reg_record_item"
+        android:title="掛號紀錄" />
+
+    <item
+        android:id="@+id/traffic_guide_item"
+        android:title="交通指引" />
+
+    <item
+        android:id="@+id/check_in_item"
+        android:title="報到" />
+
+    <item
+        android:id="@+id/logout_item"
+        android:title="登出" />
+</menu>

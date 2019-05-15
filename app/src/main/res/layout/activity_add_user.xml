@@ -87,17 +87,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="選擇" />
+                android:padding="16dp"
+                android:text="選擇"
+                android:textAppearance="?android:textAppearanceMedium" />
         </LinearLayout>
 
         <Button
             android:id="@+id/submit_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="8dp"
             android:layout_weight="0"
             android:fontFamily="sans-serif-condensed-light"
-            android:text="submit"
+            android:text="註冊"
             android:textSize="26sp" />
     </LinearLayout>
 </ScrollView>
