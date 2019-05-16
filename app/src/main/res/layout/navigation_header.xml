@@ -8,9 +8,11 @@
     android:padding="16dp">
 
     <ImageView
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/icons8_android_64" />
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@android:color/white"
+        android:padding="14dp"
+        android:src="@drawable/f_hos_logo" />
 
     <TextView
         android:layout_width="wrap_content"
