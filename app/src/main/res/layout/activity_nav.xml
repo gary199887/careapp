@@ -26,10 +26,6 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
             android:padding="16dp">
-
-            <include
-                android:id="@+id/nav_content"
-                layout="@layout/content_member_center" />
         </android.support.design.widget.CoordinatorLayout>
     </RelativeLayout>
 

@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ReservationActivity"
+            android:theme="@style/NavTheme"></activity>
+        <activity
             android:name=".MemberCenterActivity"
             android:label="會員中心"
-            android:theme="@style/NavTheme"></activity>
+            android:theme="@style/NavTheme" />
         <activity
             android:name=".ForgetPasswordActivity"
             android:label="忘記密碼">

@@ -3,6 +3,7 @@ package org.changken.careapp.tools;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import org.changken.careapp.MainActivity;
@@ -34,7 +36,16 @@ public class Nav {
         mContext = (Context) activity;
     }
 
-    public void setNav() {
+    public void setNav(final MenuGoTo menuGoTo, int resId) {
+        //解析CoordinatorLayout
+        CoordinatorLayout coordinatorLayout = mDrawerLayout.findViewById(R.id.coordinatorLayout);
+
+        //動態解析自己的外觀檔
+        View contentView = mActivity.getLayoutInflater().inflate(resId, coordinatorLayout, false);
+
+        //把它綁上去
+        coordinatorLayout.addView(contentView);
+
         //設置Toolbar
         mActivity.setSupportActionBar(mToolbar);
 
@@ -50,30 +61,37 @@ public class Nav {
                 switch (id) {
                     case R.id.member_center_item:
                         // 按下「會員中心」要做的事
+                        menuGoTo.goMemberCenter();
                         Toast.makeText(mContext, "會員中心", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.personal_info_item:
                         // 按下「個人資料」要做的事
+                        menuGoTo.goPersonalInfo();
                         Toast.makeText(mContext, "個人資料", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.reg_item:
+                        menuGoTo.goReg();
                         Toast.makeText(mContext, "門診預約及掛號", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.query_cancel_item:
+                        menuGoTo.goQueryCancel();
                         Toast.makeText(mContext, "查詢門診進度及取消預約", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.reg_record_item:
+                        menuGoTo.goRegRecord();
                         Toast.makeText(mContext, "掛號紀錄", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.traffic_guide_item:
+                        menuGoTo.goTrafficGuide();
                         Toast.makeText(mContext, "交通指引", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.check_in_item:
+                        menuGoTo.goCheckIn();
                         Toast.makeText(mContext, "報到", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.logout_item:
                         //回到首頁
-                        mActivity.startActivity(new Intent(mContext, MainActivity.class));
+                        menuGoTo.goLogout();
                         Toast.makeText(mContext, "登出", Toast.LENGTH_SHORT).show();
                         break;
                     default:
@@ -89,5 +107,16 @@ public class Nav {
         mDrawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
+    }
+
+    public interface MenuGoTo{
+        void goMemberCenter();
+        void goPersonalInfo();
+        void goReg();
+        void goQueryCancel();
+        void goRegRecord();
+        void goTrafficGuide();
+        void goCheckIn();
+        void goLogout();
     }
 }

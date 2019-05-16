@@ -10,33 +10,26 @@ import android.util.Log;
 
 import org.changken.careapp.tools.Nav;
 
-public class MemberCenterActivity extends AppCompatActivity {
+public class ReservationActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private DrawerLayout mDrawerLayout;
-    private NavigationView mNavigationView;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
-        //初始化元件
         initial();
-    }
-
-    private void initial() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 
         try {
-            //設定側邊攔
-            Nav nav = new Nav(mDrawerLayout, mNavigationView, mToolbar, this);
+
+            Nav nav = new Nav(drawerLayout, navigationView, toolbar, this);
             nav.setNav(new Nav.MenuGoTo() {
                 @Override
                 public void goMemberCenter() {
-                    //non
+                    startActivity(new Intent(ReservationActivity.this, MemberCenterActivity.class));
                 }
 
                 @Override
@@ -46,7 +39,7 @@ public class MemberCenterActivity extends AppCompatActivity {
 
                 @Override
                 public void goReg() {
-                    startActivity(new Intent(MemberCenterActivity.this, ReservationActivity.class));
+                    //non
                 }
 
                 @Override
@@ -71,12 +64,17 @@ public class MemberCenterActivity extends AppCompatActivity {
 
                 @Override
                 public void goLogout() {
-                    startActivity(new Intent(MemberCenterActivity.this, MainActivity.class));
+                    startActivity(new Intent(ReservationActivity.this, MainActivity.class));
                 }
-            }, R.layout.content_member_center);
-        }catch (Exception e){
-            Log.e("MemeberCenterActivity", e.getMessage());
+            }, R.layout.content_reservation);
+        } catch (Exception e) {
+            Log.e("ReservationActivity", e.getMessage());
         }
     }
 
+    private void initial() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+    }
 }
