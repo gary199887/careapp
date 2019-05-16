@@ -30,8 +30,8 @@ public class MemberCenterActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 
+        //設定側邊攔
         try {
-            //設定側邊攔
             Nav nav = new Nav(mDrawerLayout, mNavigationView, mToolbar, this);
             nav.setNav(new Nav.MenuGoTo() {
                 @Override
@@ -74,7 +74,7 @@ public class MemberCenterActivity extends AppCompatActivity {
                     startActivity(new Intent(MemberCenterActivity.this, MainActivity.class));
                 }
             }, R.layout.content_member_center);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e("MemeberCenterActivity", e.getMessage());
         }
     }

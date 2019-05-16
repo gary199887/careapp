@@ -1,7 +1,6 @@
 package org.changken.careapp.tools;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -14,9 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import org.changken.careapp.MainActivity;
 import org.changken.careapp.R;
 
+/**
+ * 側邊攔模組
+ * */
 public class Nav {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
@@ -36,6 +37,12 @@ public class Nav {
         mContext = (Context) activity;
     }
 
+    /**
+     * 設定側邊攔
+     *
+     * @param menuGoTo MenuGoTo 按下側邊欄按鈕的邏輯(自訂義邏輯)
+     * @param resId int 自訂的模板(e.g. R.layout.content_自訂義名稱)
+     * */
     public void setNav(final MenuGoTo menuGoTo, int resId) {
         //解析CoordinatorLayout
         CoordinatorLayout coordinatorLayout = mDrawerLayout.findViewById(R.id.coordinatorLayout);
@@ -110,13 +117,37 @@ public class Nav {
     }
 
     public interface MenuGoTo{
+        /**
+         * 按下會員中心項目的邏輯
+         * */
         void goMemberCenter();
+        /**
+         * 按下個人資料項目的邏輯
+         * */
         void goPersonalInfo();
+        /**
+         * 按下門診預約及掛號項目的邏輯
+         * */
         void goReg();
+        /**
+                * 按下查詢門診進度及取消預約項目的邏輯
+         * */
         void goQueryCancel();
+        /**
+         * 按下掛號紀錄項目的邏輯
+         * */
         void goRegRecord();
+        /**
+         * 按下交通指引項目的邏輯
+         * */
         void goTrafficGuide();
+        /**
+         * 按下報到項目的邏輯
+         * */
         void goCheckIn();
+        /**
+         * 按下登出項目的邏輯
+         * */
         void goLogout();
     }
 }

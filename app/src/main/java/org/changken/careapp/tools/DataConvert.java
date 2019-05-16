@@ -10,6 +10,9 @@ import org.changken.careapp.datamodels.AirTableResponse;
 
 import java.text.DateFormat;
 
+/**
+ * @deprecated
+ * */
 public abstract class DataConvert<T> {
 
     protected Gson gson;

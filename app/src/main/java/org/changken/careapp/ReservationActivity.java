@@ -21,10 +21,17 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
+        //初始化元件
         initial();
+    }
 
+    private void initial() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //設定側邊攔
         try {
-
             Nav nav = new Nav(drawerLayout, navigationView, toolbar, this);
             nav.setNav(new Nav.MenuGoTo() {
                 @Override
@@ -70,11 +77,5 @@ public class ReservationActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("ReservationActivity", e.getMessage());
         }
-    }
-
-    private void initial() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-        navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 }

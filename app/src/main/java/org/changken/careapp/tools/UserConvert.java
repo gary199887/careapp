@@ -8,6 +8,9 @@ import org.changken.careapp.datamodels.AirTableListResponse;
 
 import java.lang.reflect.Type;
 
+/**
+ * @deprecated
+ * */
 public class UserConvert extends DataConvert<User> {
     public AirTableResponse<User> getResponse(String data){
         Type type = new TypeToken<AirTableResponse<User>>(){}.getType();

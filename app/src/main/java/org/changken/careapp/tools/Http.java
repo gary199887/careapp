@@ -13,6 +13,9 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+/**
+ * @deprecated
+ * */
 public class Http {
     private String apiKey;
 
