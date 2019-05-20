@@ -1,6 +1,7 @@
 package org.changken.careapp;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.User;
 import org.changken.careapp.models.UserModel;
+import org.changken.careapp.tools.Helper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,9 +64,18 @@ public class MainActivity extends AppCompatActivity {
 
                 Call<AirTableListResponse<User>> listResponseCall = userModel.list(query);
 
+                //設定警告視窗
+                final AlertDialog progressDialog = Helper.progressDialog(this, "登入中...");
+
+                //顯示它!
+                progressDialog.show();
+
                 listResponseCall.enqueue(new Callback<AirTableListResponse<User>>() {
                     @Override
                     public void onResponse(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
+                        //關掉alert視窗
+                        progressDialog.dismiss();
+
                         //檢查http回應是否為200 ok!
                         if(response.isSuccessful()){
                             //如果找到該筆資料
@@ -81,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<AirTableListResponse<User>> call, Throwable t) {
+                        //關掉alert視窗
+                        progressDialog.dismiss();
+
                         //如果是網路沒通 or Json解析失敗!
                         Toast.makeText(MainActivity.this, "網路問題!", Toast.LENGTH_SHORT).show();
                     }

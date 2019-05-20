@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import org.changken.careapp.datamodels.AirTableResponse;
 import org.changken.careapp.datamodels.User;
 import org.changken.careapp.models.UserModel;
+import org.changken.careapp.tools.Helper;
 
 import java.util.Calendar;
 
@@ -63,34 +65,63 @@ public class AddUserActivity extends AppCompatActivity {
         });
 
         submitButton.setOnClickListener((View v) -> {
-            //建立新增資料的請求
-            Call<AirTableResponse<User>> responseCall = userModel.add(new User(nameTextView.getText().toString(),
-                    idNumberTextView.getText().toString(),
-                    pwTextView.getText().toString(),
-                    emailTextView.getText().toString(),
-                    phoneTextView.getText().toString(),
-                    addressTextView.getText().toString(),
-                    birthdayEditText.getText().toString()
-            ));
+            //取得輸入值
+            String name = nameTextView.getText().toString();
+            String idNumber = idNumberTextView.getText().toString();
+            String pw = pwTextView.getText().toString();
+            String email = emailTextView.getText().toString();
+            String phone = phoneTextView.getText().toString();
+            String address = addressTextView.getText().toString();
+            String birthday = birthdayEditText.getText().toString();
 
-            //執行新增資料
-            responseCall.enqueue(new Callback<AirTableResponse<User>>() {
-                @EverythingIsNonNull
-                @Override
-                public void onResponse(Call<AirTableResponse<User>> call, Response<AirTableResponse<User>> response) {
-                    if (response.isSuccessful()) { //200 ok!
-                        Toast.makeText(AddUserActivity.this, "新增成功!:)", Toast.LENGTH_SHORT).show();
-                    } else { //500 server error or 404
-                        Toast.makeText(AddUserActivity.this, "新增失敗!伺服器回應有些怪怪的~~", Toast.LENGTH_SHORT).show();
+            if (name.length() > 0 && idNumber.length() > 0 && pw.length() > 0 &&
+                    email.length() > 0 && phone.length() > 0 && address.length() > 0 &&
+                    birthday.length() > 0) {
+
+                //建立新增資料的請求
+                Call<AirTableResponse<User>> responseCall = userModel.add(new User(
+                        name,
+                        idNumber,
+                        pw,
+                        email,
+                        phone,
+                        address,
+                        birthday
+                ));
+
+                //設定警告視窗
+                final AlertDialog progressDialog = Helper.progressDialog(this, "註冊中...");
+
+                //顯示它!
+                progressDialog.show();
+
+                //執行新增資料
+                responseCall.enqueue(new Callback<AirTableResponse<User>>() {
+                    @EverythingIsNonNull
+                    @Override
+                    public void onResponse(Call<AirTableResponse<User>> call, Response<AirTableResponse<User>> response) {
+                        //關掉alert視窗
+                        progressDialog.dismiss();
+
+                        if (response.isSuccessful()) { //200 ok!
+                            Toast.makeText(AddUserActivity.this, "新增成功!:)", Toast.LENGTH_SHORT).show();
+                        } else { //500 server error or 404
+                            Toast.makeText(AddUserActivity.this, "新增失敗!伺服器回應有些怪怪的~~", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
 
-                @EverythingIsNonNull
-                @Override
-                public void onFailure(Call<AirTableResponse<User>> call, Throwable t) {
-                    Toast.makeText(AddUserActivity.this, "新增失敗!可能是網路沒有通唷~", Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @EverythingIsNonNull
+                    @Override
+                    public void onFailure(Call<AirTableResponse<User>> call, Throwable t) {
+                        //關掉alert視窗
+                        progressDialog.dismiss();
+
+                        Toast.makeText(AddUserActivity.this, "新增失敗!可能是網路沒有通唷~", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(AddUserActivity.this, "新增失敗!請填寫所有的欄位!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
