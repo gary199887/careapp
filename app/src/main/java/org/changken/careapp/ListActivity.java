@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import org.changken.careapp.adapter.MyListAdapter;
 import org.changken.careapp.datamodels.User;
+import org.changken.careapp.models.BaseModel;
+import org.changken.careapp.models.ModelCallback;
 import org.changken.careapp.models.UserModel;
 import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.AirTableResponse;
@@ -19,16 +21,14 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.internal.EverythingIsNonNull;
 
 public class ListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     MyListAdapter myListAdapter;
 
-    UserModel userModel;
+    BaseModel<User> userModel;
 
     /**
      * 初始化元件
@@ -41,23 +41,19 @@ public class ListActivity extends AppCompatActivity {
         queryMap.put("view", "Grid%20view");
 
         //從網路撈資料一定只能用thread
-        Call<AirTableListResponse<User>> responseCall = userModel.list(queryMap);
-
-        //執行撈資料!
-        responseCall.enqueue(new Callback<AirTableListResponse<User>>() {
-            @EverythingIsNonNull
+        userModel.list(queryMap, new ModelCallback<AirTableListResponse<User>>() {
             @Override
-            public void onResponse(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(ListActivity.this, "取得成功!", Toast.LENGTH_SHORT).show();
-                    //設定RecyclerView
-                    setRecyclerView(response.body().getRecords());
-                } else {
-                    Toast.makeText(ListActivity.this, "新增失敗!伺服器好像怪怪的唷~", Toast.LENGTH_SHORT).show();
-                }
+            public void onResponseSuccess(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
+                Toast.makeText(ListActivity.this, "取得成功!", Toast.LENGTH_SHORT).show();
+                //設定RecyclerView
+                setRecyclerView(response.body().getRecords());
             }
 
-            @EverythingIsNonNull
+            @Override
+            public void onResponseFailure(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
+                Toast.makeText(ListActivity.this, "新增失敗!伺服器好像怪怪的唷~", Toast.LENGTH_SHORT).show();
+            }
+
             @Override
             public void onFailure(Call<AirTableListResponse<User>> call, Throwable t) {
                 Toast.makeText(ListActivity.this, "新增失敗!可能是網路沒有通唷~", Toast.LENGTH_SHORT).show();

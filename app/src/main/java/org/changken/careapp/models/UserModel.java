@@ -21,78 +21,83 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
-public class UserModel implements BaseModel<User> {
+public class UserModel extends BaseModel<User> {
 
     private UserService mUserService;
 
     public UserModel() {
         //獲取UserService物件
         mUserService = RetrofitManager
-                            .getInstance()
-                            .getRetrofit()
-                            .create(UserService.class);
+                .getInstance()
+                .getRetrofit()
+                .create(UserService.class);
     }
 
     /**
      * list 獲取所有使用者
      *
-     * @param queryMap Map<String, String>
-     * @return Call<AirTableListResponse<User>>
-     * */
+     * @param queryMap      Map<String, String>
+     * @param modelCallback ModelCallback<AirTableListResponse<User>>
+     */
     @Override
-    public Call<AirTableListResponse<User>> list(Map<String, String> queryMap) {
-        return mUserService.getUserList("Bearer " + BuildConfig.AIRTABLE_API_KEY, queryMap);
+    public void list(Map<String, String> queryMap, final ModelCallback<AirTableListResponse<User>> modelCallback) {
+        Call<AirTableListResponse<User>> responseCall = mUserService.getUserList("Bearer " + BuildConfig.AIRTABLE_API_KEY, queryMap);
+        super.<AirTableListResponse<User>>executeRequest(responseCall, modelCallback);
     }
 
     /**
      * get 獲取一位使用者
      *
-     * @param recordId String
-     * @return Call<AirTableResponse<User>>
-     * */
+     * @param recordId      String
+     * @param modelCallback ModelCallback<AirTableResponse<User>>
+     */
     @Override
-    public Call<AirTableResponse<User>> get(String recordId) {
-        return mUserService.getUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId);
+    public void get(String recordId, final ModelCallback<AirTableResponse<User>> modelCallback) {
+        Call<AirTableResponse<User>> responseCall = mUserService.getUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId);
+        super.<AirTableResponse<User>>executeRequest(responseCall, modelCallback);
     }
 
     /**
      * add 新增使用者
      *
-     * @param data User
-     * @return Call<AirTableResponse<User>>
-     * */
+     * @param data          User
+     * @param modelCallback ModelCallback<AirTableResponse<User>>
+     */
     @Override
-    public Call<AirTableResponse<User>> add(User data) {
-        return mUserService.addUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, new AirTableRequest<User>(data));
+    public void add(User data, final ModelCallback<AirTableResponse<User>> modelCallback) {
+        Call<AirTableResponse<User>> responseCall = mUserService.addUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, new AirTableRequest<User>(data));
+        super.<AirTableResponse<User>>executeRequest(responseCall, modelCallback);
     }
 
     /**
      * update 更新使用者
      *
-     * @param recordId String
-     * @param data User
-     * @return Call<AirTableResponse<User>>
-     * */
+     * @param recordId      String
+     * @param data          User
+     * @param modelCallback ModelCallback<AirTableResponse<User>>
+     */
     @Override
-    public Call<AirTableResponse<User>> update(String recordId, User data) {
-        return mUserService.updateUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId, new AirTableRequest<User>(data));
+    public void update(String recordId, User data, final ModelCallback<AirTableResponse<User>> modelCallback) {
+        Call<AirTableResponse<User>> responseCall = mUserService.updateUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId, new AirTableRequest<User>(data));
+        super.<AirTableResponse<User>>executeRequest(responseCall, modelCallback);
     }
 
     /**
      * delete 刪除使用者
      *
-     * @param recordId String
-     * @return Call<AirTableDeleteResponse>
-     * */
+     * @param recordId      String
+     * @param modelCallback ModelCallback<AirTableDeleteResponse>
+     */
     @Override
-    public Call<AirTableDeleteResponse> delete(String recordId) {
-        return mUserService.deleteUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId);
+    public void delete(String recordId, final ModelCallback<AirTableDeleteResponse> modelCallback) {
+        Call<AirTableDeleteResponse> responseCall = mUserService.deleteUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId);
+        super.<AirTableDeleteResponse>executeRequest(responseCall, modelCallback);
     }
 
     /**
      * 定義取得資料的方法
-     * */
-    private interface UserService{
+     */
+    private interface UserService {
         //記得要指定接受json，大雷!
         //列出所有使用者
         @GET("user")

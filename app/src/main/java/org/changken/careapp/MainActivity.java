@@ -14,6 +14,7 @@ import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.AirTableResponse;
 import org.changken.careapp.datamodels.User;
 import org.changken.careapp.models.BaseModel;
+import org.changken.careapp.models.ModelCallback;
 import org.changken.careapp.models.UserModel;
 import org.changken.careapp.tools.Helper;
 
@@ -22,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,10 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         //確認是否有登入
         if (Helper.isLogin(this)) {
-            Intent intent = new Intent(MainActivity.this, MemberCenterActivity.class);
-            startActivity(intent);
-            finish();
             Toast.makeText(this, "哈哈您已登入唷!", Toast.LENGTH_SHORT).show();
+            goToMemberCenter();
         }
 
         //登入按鈕的邏輯
@@ -73,45 +71,43 @@ public class MainActivity extends AppCompatActivity {
                 query.put("view", "Grid%20view");
                 query.put("filterByFormula", String.format("AND({user_id} = '%s', {user_password} = '%s')", idNumber, password));
 
-                Call<AirTableListResponse<User>> listResponseCall = userModel.list(query);
-
                 //設定警告視窗
                 final AlertDialog progressDialog = Helper.progressDialog(this, "登入中...");
 
-                //顯示它!
-                progressDialog.show();
-
-                listResponseCall.enqueue(new Callback<AirTableListResponse<User>>() {
+                userModel.list(query, new ModelCallback<AirTableListResponse<User>>() {
                     @Override
-                    public void onResponse(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
+                    public void onProgress() {
+                        //顯示它!
+                        progressDialog.show();
+                    }
+
+                    @Override
+                    public void onProcessEnd() {
                         //關掉alert視窗
                         progressDialog.dismiss();
+                    }
 
-                        //檢查http回應是否為200 ok!
-                        if (response.isSuccessful()) {
-                            //抓取資料
-                            List<AirTableResponse<User>> list = response.body().getRecords();
-                            //如果找到該筆資料
-                            if (list.size() > 0) {
-                                //執行登入
-                                Helper.loginProcess(MainActivity.this, list.get(0).getFields().getIdNumber(), list.get(0).getId());
-                                //跳頁
-                                Intent intent = new Intent(MainActivity.this, MemberCenterActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast.makeText(MainActivity.this, "登入失敗!身分證or密碼輸入錯誤!", Toast.LENGTH_SHORT).show();
-                            }
+                    @Override
+                    public void onResponseSuccess(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
+                        //抓取資料
+                        List<AirTableResponse<User>> list = response.body().getRecords();
+                        //如果找到該筆資料
+                        if (list.size() > 0) {
+                            //執行登入
+                            Helper.loginProcess(MainActivity.this, list.get(0).getFields().getIdNumber(), list.get(0).getId());
+                            goToMemberCenter();
                         } else {
-                            Toast.makeText(MainActivity.this, "登入失敗!http回應有誤!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "登入失敗!身分證or密碼輸入錯誤!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<AirTableListResponse<User>> call, Throwable t) {
-                        //關掉alert視窗
-                        progressDialog.dismiss();
+                    public void onResponseFailure(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
+                        Toast.makeText(MainActivity.this, "登入失敗!http回應有誤!", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onFailure(Call<AirTableListResponse<User>> call, Throwable t) {
                         //如果是網路沒通 or Json解析失敗!
                         Toast.makeText(MainActivity.this, "網路問題!", Toast.LENGTH_SHORT).show();
                     }
@@ -133,5 +129,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, ForgetPasswordActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void goToMemberCenter(){
+        //跳頁
+        Intent intent = new Intent(MainActivity.this, MemberCenterActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
