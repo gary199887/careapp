@@ -11,11 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.changken.careapp.datamodels.AirTableListResponse;
+import org.changken.careapp.datamodels.AirTableResponse;
 import org.changken.careapp.datamodels.User;
+import org.changken.careapp.models.BaseModel;
 import org.changken.careapp.models.UserModel;
 import org.changken.careapp.tools.Helper;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView regTextView, forgetPwTextView;
     private Button loginButton;
     private EditText idNumberEditText, passwordEditText;
-    private UserModel userModel;
+    private BaseModel<User> userModel;
 
     /**
      * 初始化相關View元件
@@ -49,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
         //初始化元件
         initial();
 
+        //確認是否有登入
+        if (Helper.isLogin(this)) {
+            Intent intent = new Intent(MainActivity.this, MemberCenterActivity.class);
+            startActivity(intent);
+            finish();
+            Toast.makeText(this, "哈哈您已登入唷!", Toast.LENGTH_SHORT).show();
+        }
+
         //登入按鈕的邏輯
         loginButton.setOnClickListener((View v) -> {
 
@@ -56,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             String idNumber = idNumberEditText.getText().toString();
             String password = passwordEditText.getText().toString();
 
-            if(idNumber.length() > 0 && password.length() > 0){
+            if (idNumber.length() > 0 && password.length() > 0) {
                 //建立登入請求
                 Map<String, String> query = new HashMap<>();
                 query.put("view", "Grid%20view");
@@ -77,15 +88,21 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         //檢查http回應是否為200 ok!
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
+                            //抓取資料
+                            List<AirTableResponse<User>> list = response.body().getRecords();
                             //如果找到該筆資料
-                            if(response.body().getRecords().size() > 0){
+                            if (list.size() > 0) {
+                                //執行登入
+                                Helper.loginProcess(MainActivity.this, list.get(0).getFields().getIdNumber(), list.get(0).getId());
+                                //跳頁
                                 Intent intent = new Intent(MainActivity.this, MemberCenterActivity.class);
                                 startActivity(intent);
-                            }else{
+                                finish();
+                            } else {
                                 Toast.makeText(MainActivity.this, "登入失敗!身分證or密碼輸入錯誤!", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
+                        } else {
                             Toast.makeText(MainActivity.this, "登入失敗!http回應有誤!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -99,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "網路問題!", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }else{
+            } else {
                 //如果任一個欄位沒有輸入的話!
                 Toast.makeText(MainActivity.this, "請輸入所有欄位!", Toast.LENGTH_SHORT).show();
             }
