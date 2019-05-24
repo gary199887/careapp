@@ -1,5 +1,6 @@
 package org.changken.careapp.models;
 
+import org.changken.careapp.BuildConfig;
 import org.changken.careapp.datamodels.AirTableDeleteResponse;
 import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.AirTableResponse;
@@ -12,6 +13,8 @@ import retrofit2.Response;
 import retrofit2.internal.EverythingIsNonNull;
 
 public abstract class BaseModel<T> {
+    protected final static String AUTH_HEADER = "Bearer " + BuildConfig.AIRTABLE_API_KEY;
+
     //List
     abstract public void list(Map<String, String> queryMap, final ModelCallback<AirTableListResponse<T>> modelCallback);
 
