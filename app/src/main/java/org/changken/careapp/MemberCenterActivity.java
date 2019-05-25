@@ -64,7 +64,8 @@ public class MemberCenterActivity extends BaseNavActivity {
 
             @Override
             public void goCheckIn() {
-
+                startActivity(new Intent(MemberCenterActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override

@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".QRActivity"></activity>
         <activity
             android:name=".ReservationActivity"
-            android:theme="@style/NavTheme"></activity>
+            android:theme="@style/NavTheme" />
         <activity
             android:name=".MemberCenterActivity"
             android:label="會員中心"
