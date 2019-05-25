@@ -40,6 +40,10 @@ public class User {
         resId = null;
     }
 
+    public User(){
+        //不做事
+    }
+
     public String getName() {
         return name;
     }

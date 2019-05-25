@@ -1,6 +1,5 @@
 package org.changken.careapp.models;
 
-import org.changken.careapp.BuildConfig;
 import org.changken.careapp.datamodels.AirTableDeleteResponse;
 import org.changken.careapp.datamodels.AirTableRequest;
 import org.changken.careapp.datamodels.AirTableResponse;
@@ -41,8 +40,10 @@ public class UserModel extends BaseModel<User> {
      */
     @Override
     public void list(Map<String, String> queryMap, final ModelCallback<AirTableListResponse<User>> modelCallback) {
-        Call<AirTableListResponse<User>> responseCall = mUserService.getUserList("Bearer " + BuildConfig.AIRTABLE_API_KEY, queryMap);
-        super.<AirTableListResponse<User>>executeRequest(responseCall, modelCallback);
+        executeRequest(
+                mUserService.getUserList(AUTH_HEADER, queryMap),
+                modelCallback
+        );
     }
 
     /**
@@ -53,8 +54,10 @@ public class UserModel extends BaseModel<User> {
      */
     @Override
     public void get(String recordId, final ModelCallback<AirTableResponse<User>> modelCallback) {
-        Call<AirTableResponse<User>> responseCall = mUserService.getUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId);
-        super.<AirTableResponse<User>>executeRequest(responseCall, modelCallback);
+        executeRequest(
+                mUserService.getUser(AUTH_HEADER, recordId),
+                modelCallback
+        );
     }
 
     /**
@@ -65,8 +68,10 @@ public class UserModel extends BaseModel<User> {
      */
     @Override
     public void add(User data, final ModelCallback<AirTableResponse<User>> modelCallback) {
-        Call<AirTableResponse<User>> responseCall = mUserService.addUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, new AirTableRequest<User>(data));
-        super.<AirTableResponse<User>>executeRequest(responseCall, modelCallback);
+        executeRequest(
+                mUserService.addUser(AUTH_HEADER, new AirTableRequest<>(data)),
+                modelCallback
+        );
     }
 
     /**
@@ -78,8 +83,10 @@ public class UserModel extends BaseModel<User> {
      */
     @Override
     public void update(String recordId, User data, final ModelCallback<AirTableResponse<User>> modelCallback) {
-        Call<AirTableResponse<User>> responseCall = mUserService.updateUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId, new AirTableRequest<User>(data));
-        super.<AirTableResponse<User>>executeRequest(responseCall, modelCallback);
+        executeRequest(
+                mUserService.updateUser(AUTH_HEADER, recordId, new AirTableRequest<>(data)),
+                modelCallback
+        );
     }
 
     /**
@@ -90,8 +97,10 @@ public class UserModel extends BaseModel<User> {
      */
     @Override
     public void delete(String recordId, final ModelCallback<AirTableDeleteResponse> modelCallback) {
-        Call<AirTableDeleteResponse> responseCall = mUserService.deleteUser("Bearer " + BuildConfig.AIRTABLE_API_KEY, recordId);
-        super.<AirTableDeleteResponse>executeRequest(responseCall, modelCallback);
+        executeRequest(
+                mUserService.deleteUser(AUTH_HEADER, recordId),
+                modelCallback
+        );
     }
 
     /**
