@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:text="個人資料" />
+                android:text="修改個人資料" />
         </LinearLayout>
 
         <LinearLayout

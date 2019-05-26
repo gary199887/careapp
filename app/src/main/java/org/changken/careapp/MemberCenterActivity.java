@@ -19,12 +19,17 @@ public class MemberCenterActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
 
         View reservationLL = (LinearLayout) findViewById(R.id.reservation);
+        View profileLL = (LinearLayout) findViewById(R.id.personal_info);
 
         reservationLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MemberCenterActivity.this, "Hello", Toast.LENGTH_SHORT).show();
             }
+        });
+        profileLL.setOnClickListener((View v)->{
+            startActivity(new Intent(MemberCenterActivity.this, EditProfileActivity.class));
+            finish();
         });
     }
 

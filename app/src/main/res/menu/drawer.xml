@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/personal_info_item"
-        android:title="個人資料" />
+        android:title="修改個人資料" />
 
     <item
         android:id="@+id/reg_item"

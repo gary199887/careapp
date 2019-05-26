@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QRActivity"></activity>
+        <activity android:name=".QRActivity"
+            android:label="報到"></activity>
+        <activity
+            android:name=".EditProfileActivity"
+            android:label="修改個人資料"></activity>
         <activity
             android:name=".ReservationActivity"
             android:theme="@style/NavTheme" />
@@ -20,6 +24,7 @@
             android:name=".MemberCenterActivity"
             android:label="會員中心"
             android:theme="@style/NavTheme" />
+
         <activity
             android:name=".ForgetPasswordActivity"
             android:label="忘記密碼">
