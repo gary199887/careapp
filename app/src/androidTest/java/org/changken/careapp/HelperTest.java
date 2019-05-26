@@ -13,6 +13,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.text.ParseException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -45,6 +47,22 @@ public class HelperTest {
     @Test
     public void testGetUserRecordId() {
         assertEquals(userRecordId, Helper.getUserRecordId(context));
+    }
+
+    @Test
+    public void testParseDateToDay() throws ParseException {
+        String dateString = "2019-05-26";
+        String day = "7";
+
+        assertEquals(day, Helper.parseDateToDay(dateString));
+    }
+
+    @Test(expected = ParseException.class)
+    public void testParseDateToDayError() throws ParseException {
+        String dateString = "2019--26";
+        String day = "7";
+
+        assertEquals(day, Helper.parseDateToDay(dateString));
     }
 
     @After

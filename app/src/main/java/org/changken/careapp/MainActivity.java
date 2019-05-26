@@ -97,24 +97,24 @@ public class MainActivity extends AppCompatActivity {
                             Helper.loginProcess(MainActivity.this, list.get(0).getFields().getIdNumber(), list.get(0).getId());
                             goToMemberCenter();
                         } else {
-                            Toast.makeText(MainActivity.this, "登入失敗!身分證or密碼輸入錯誤!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, R.string.login_failure_input_error, Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onResponseFailure(Call<AirTableListResponse<User>> call, Response<AirTableListResponse<User>> response) {
-                        Toast.makeText(MainActivity.this, "登入失敗!http回應有誤!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, R.string.login_failure_not_found_error, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<AirTableListResponse<User>> call, Throwable t) {
                         //如果是網路沒通 or Json解析失敗!
-                        Toast.makeText(MainActivity.this, "網路問題!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, R.string.login_failure_inner_error, Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
                 //如果任一個欄位沒有輸入的話!
-                Toast.makeText(MainActivity.this, "請輸入所有欄位!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.please_type_all_fields, Toast.LENGTH_SHORT).show();
             }
         });
 
