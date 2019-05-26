@@ -78,7 +78,7 @@ public class AddUserActivity extends AppCompatActivity {
                     birthday.length() > 0) {
 
                 //設定警告視窗
-                final AlertDialog progressDialog = Helper.progressDialog(this, "註冊中...");
+                final AlertDialog progressDialog = Helper.createProgressDialog(this, "註冊中...");
 
                 //建立並執行新增資料的請求
                 userModel.add(new User(

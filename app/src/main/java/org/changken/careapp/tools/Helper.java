@@ -7,13 +7,14 @@ import org.changken.careapp.R;
 
 public class Helper {
     /**
+     * createProgressDialog
      * 產生一個進度對話視窗
      *
      * @param context Context
      * @param title   String
      * @return AlertDialog
      */
-    public static AlertDialog progressDialog(Context context, String title) {
+    public static AlertDialog createProgressDialog(Context context, String title) {
         return new AlertDialog.Builder(context, R.style.AlertDialogTheme)
                 .setTitle(title)
                 .setView(R.layout.progress_bar)
@@ -21,37 +22,62 @@ public class Helper {
     }
 
     /**
-     * isLogin 檢查是否有登入
+     * isLogin
+     * 檢查是否有登入
      *
-     * @param  context Context
+     * @param context Context
      * @return boolean
-     * */
+     */
     public static boolean isLogin(Context context) {
         return context.getSharedPreferences("careapp", Context.MODE_PRIVATE)
                 .getBoolean("isLogin", false);
     }
 
     /**
+     * getUserId
+     * 取得使用者身分證
+     *
+     * @param context Context
+     * @return String
+     */
+    public static String getUserId(Context context) {
+        return context.getSharedPreferences("careapp", Context.MODE_PRIVATE)
+                .getString("user_id", "");
+    }
+
+    /**
+     * getUserRecordId
+     * 取得使用者在airtable的唯一識別碼
+     *
+     * @param context Context
+     * @return String
+     */
+    public static String getUserRecordId(Context context) {
+        return context.getSharedPreferences("careapp", Context.MODE_PRIVATE)
+                .getString("user_record_id", "");
+    }
+
+    /**
      * loginProcess 登入流程
      *
-     * @param  context Context
-     * @param  user_id String
-     * @param user_record_is String
-     * */
-    public static void loginProcess(Context context, String user_id, String user_record_is) {
+     * @param context        Context
+     * @param user_id        String
+     * @param user_record_id String
+     */
+    public static void loginProcess(Context context, String user_id, String user_record_id) {
         context.getSharedPreferences("careapp", Context.MODE_PRIVATE)
                 .edit()
                 .putBoolean("isLogin", true)
                 .putString("user_id", user_id)
-                .putString("user_record_id", user_record_is)
+                .putString("user_record_id", user_record_id)
                 .apply();
     }
 
     /**
      * logoutProcess 登出流程
      *
-     * @param  context Context
-     * */
+     * @param context Context
+     */
     public static void logoutProcess(Context context) {
         context.getSharedPreferences("careapp", Context.MODE_PRIVATE)
                 .edit()
