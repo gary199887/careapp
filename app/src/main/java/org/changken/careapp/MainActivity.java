@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 query.put("filterByFormula", String.format("AND({user_id} = '%s', {user_password} = '%s')", idNumber, password));
 
                 //設定警告視窗
-                final AlertDialog progressDialog = Helper.progressDialog(this, "登入中...");
+                final AlertDialog progressDialog = Helper.createProgressDialog(this, "登入中...");
 
                 userModel.list(query, new ModelCallback<AirTableListResponse<User>>() {
                     @Override
