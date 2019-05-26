@@ -12,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".QRActivity"
-            android:theme="@style/NavTheme" />
+        <activity android:name=".QRActivity"></activity>
         <activity
             android:name=".ReservationActivity"
             android:theme="@style/NavTheme" />

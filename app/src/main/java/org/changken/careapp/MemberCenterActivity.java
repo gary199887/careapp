@@ -38,7 +38,8 @@ public class MemberCenterActivity extends BaseNavActivity {
 
             @Override
             public void goPersonalInfo() {
-
+                startActivity(new Intent(MemberCenterActivity.this, EditProfileActivity.class));
+                finish();
             }
 
             @Override
