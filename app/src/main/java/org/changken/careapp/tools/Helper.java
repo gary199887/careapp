@@ -5,6 +5,10 @@ import android.support.v7.app.AlertDialog;
 
 import org.changken.careapp.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Helper {
     /**
      * createProgressDialog
@@ -85,5 +89,23 @@ public class Helper {
                 .putString("user_id", "")
                 .putString("user_record_id", "")
                 .apply();
+    }
+
+    /**
+     * parseDateToDay
+     * 轉換西元至星期
+     *
+     * @param dateString String
+     * @return String
+     * @throws ParseException 無法將字串轉換成Date
+     */
+    public static String parseDateToDay(String dateString) throws ParseException {
+        SimpleDateFormat dateStringFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date = dateStringFormat.parse(dateString);
+
+        SimpleDateFormat dateToDayFormat = new SimpleDateFormat("u");
+
+        return dateToDayFormat.format(date);
     }
 }
