@@ -20,6 +20,7 @@ public class MemberCenterActivity extends BaseNavActivity {
 
         View reservationLL = (LinearLayout) findViewById(R.id.reservation);
         View profileLL = (LinearLayout) findViewById(R.id.personal_info);
+        View trafficLL = findViewById(R.id.traffic_guide);
 
         reservationLL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +30,10 @@ public class MemberCenterActivity extends BaseNavActivity {
         });
         profileLL.setOnClickListener((View v)->{
             startActivity(new Intent(MemberCenterActivity.this, EditProfileActivity.class));
+            finish();
+        });
+        trafficLL.setOnClickListener((View v)->{
+            startActivity(new Intent(MemberCenterActivity.this, TrafficInfoActivity.class));
             finish();
         });
     }
@@ -65,7 +70,7 @@ public class MemberCenterActivity extends BaseNavActivity {
 
             @Override
             public void goTrafficGuide() {
-
+                startActivity(new Intent(MemberCenterActivity.this, TrafficInfoActivity.class));
             }
 
             @Override

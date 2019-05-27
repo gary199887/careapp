@@ -1,34 +1,35 @@
 package org.changken.careapp;
 
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
 
-public class QRActivity extends BaseNavActivity {
+public class TrafficInfoActivity extends BaseNavActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
-    @Override
     protected Nav.MenuClickAction getMenuClickAction() {
         return new Nav.MenuClickAction() {
             @Override
             public void goMemberCenter() {
-                startActivity(new Intent(QRActivity.this, MemberCenterActivity.class));
+                startActivity(new Intent(TrafficInfoActivity.this, MemberCenterActivity.class));
                 finish();
             }
 
             @Override
             public void goPersonalInfo() {
-
+                startActivity(new Intent(TrafficInfoActivity.this, EditProfileActivity.class));
             }
 
             @Override
             public void goReg() {
-                startActivity(new Intent(QRActivity.this, ReservationActivity.class));
+                startActivity(new Intent(TrafficInfoActivity.this, ReservationActivity.class));
             }
 
             @Override
@@ -43,18 +44,19 @@ public class QRActivity extends BaseNavActivity {
 
             @Override
             public void goTrafficGuide() {
-                startActivity(new Intent(QRActivity.this, TrafficInfoActivity.class));
+
             }
 
             @Override
             public void goCheckIn() {
-
+                startActivity(new Intent(TrafficInfoActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override
             public void goLogout() {
-                Helper.logoutProcess(QRActivity.this);
-                startActivity(new Intent(QRActivity.this, MainActivity.class));
+                Helper.logoutProcess(TrafficInfoActivity.this);
+                startActivity(new Intent(TrafficInfoActivity.this, MainActivity.class));
                 finish();
             }
         };
@@ -62,7 +64,6 @@ public class QRActivity extends BaseNavActivity {
 
     @Override
     protected int getMyOwnContentView() {
-        return R.layout.activity_qr;
+        return R.layout.activity_traffic_info;
     }
-
 }
