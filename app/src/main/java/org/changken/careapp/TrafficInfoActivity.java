@@ -25,11 +25,13 @@ public class TrafficInfoActivity extends BaseNavActivity {
             @Override
             public void goPersonalInfo() {
                 startActivity(new Intent(TrafficInfoActivity.this, EditProfileActivity.class));
+                finish();
             }
 
             @Override
             public void goReg() {
                 startActivity(new Intent(TrafficInfoActivity.this, ReservationActivity.class));
+                finish();
             }
 
             @Override
@@ -44,7 +46,7 @@ public class TrafficInfoActivity extends BaseNavActivity {
 
             @Override
             public void goTrafficGuide() {
-
+                //non
             }
 
             @Override

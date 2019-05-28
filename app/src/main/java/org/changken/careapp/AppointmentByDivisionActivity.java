@@ -2,34 +2,41 @@ package org.changken.careapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
 
-public class QRActivity extends BaseNavActivity {
+public class AppointmentByDivisionActivity extends BaseNavActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ((Button)findViewById(R.id.button)).setOnClickListener((v) -> {
+            startActivity(new Intent(AppointmentByDivisionActivity.this, ViewDivisionActivity.class));
+            finish();
+        });
     }
+
     @Override
     protected Nav.MenuClickAction getMenuClickAction() {
         return new Nav.MenuClickAction() {
             @Override
             public void goMemberCenter() {
-                startActivity(new Intent(QRActivity.this, MemberCenterActivity.class));
+                startActivity(new Intent(AppointmentByDivisionActivity.this, MemberCenterActivity.class));
                 finish();
             }
 
             @Override
             public void goPersonalInfo() {
-                startActivity(new Intent(QRActivity.this, EditProfileActivity.class));
+                startActivity(new Intent(AppointmentByDivisionActivity.this, EditProfileActivity.class));
                 finish();
             }
 
             @Override
             public void goReg() {
-                startActivity(new Intent(QRActivity.this, ReservationActivity.class));
+                startActivity(new Intent(AppointmentByDivisionActivity.this, ReservationActivity.class));
                 finish();
             }
 
@@ -45,19 +52,20 @@ public class QRActivity extends BaseNavActivity {
 
             @Override
             public void goTrafficGuide() {
-                startActivity(new Intent(QRActivity.this, TrafficInfoActivity.class));
+                startActivity(new Intent(AppointmentByDivisionActivity.this, TrafficInfoActivity.class));
                 finish();
             }
 
             @Override
             public void goCheckIn() {
-                //non
+                startActivity(new Intent(AppointmentByDivisionActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override
             public void goLogout() {
-                Helper.logoutProcess(QRActivity.this);
-                startActivity(new Intent(QRActivity.this, MainActivity.class));
+                Helper.logoutProcess(AppointmentByDivisionActivity.this);
+                startActivity(new Intent(AppointmentByDivisionActivity.this, MainActivity.class));
                 finish();
             }
         };
@@ -65,7 +73,6 @@ public class QRActivity extends BaseNavActivity {
 
     @Override
     protected int getMyOwnContentView() {
-        return R.layout.activity_qr;
+        return R.layout.content_appointment_by_division;
     }
-
 }

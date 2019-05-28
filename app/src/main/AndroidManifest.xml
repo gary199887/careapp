@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrafficInfoActivity"
-            android:label="交通指引"></activity>
+        <activity android:name=".AppointmentByDivisionActivity"></activity>
+        <activity android:name=".ViewDivisionActivity"></activity>
+        <activity
+            android:name=".TrafficInfoActivity"
+            android:label="交通指引" />
         <activity
             android:name=".QRActivity"
             android:label="報到" />

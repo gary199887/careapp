@@ -71,6 +71,7 @@ public class MemberCenterActivity extends BaseNavActivity {
             @Override
             public void goTrafficGuide() {
                 startActivity(new Intent(MemberCenterActivity.this, TrafficInfoActivity.class));
+                finish();
             }
 
             @Override

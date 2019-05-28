@@ -20,7 +20,8 @@ public class ReservationActivity extends BaseNavActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ReservationActivity.this, "依科別預約", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ReservationActivity.this, AppointmentByDivisionActivity.class));
+                finish();
             }
         });
     }
@@ -36,7 +37,8 @@ public class ReservationActivity extends BaseNavActivity {
 
             @Override
             public void goPersonalInfo() {
-
+                startActivity(new Intent(ReservationActivity.this, EditProfileActivity.class));
+                finish();
             }
 
             @Override
@@ -56,12 +58,14 @@ public class ReservationActivity extends BaseNavActivity {
 
             @Override
             public void goTrafficGuide() {
-
+                startActivity(new Intent(ReservationActivity.this, TrafficInfoActivity.class));
+                finish();
             }
 
             @Override
             public void goCheckIn() {
-
+                startActivity(new Intent(ReservationActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override
