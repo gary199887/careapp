@@ -9,14 +9,26 @@ import org.changken.careapp.tools.Nav;
 
 public class AppointmentByDivisionActivity extends BaseNavActivity {
 
+    private Button reservationDivisionButton;
+
+    private void initial(){
+        reservationDivisionButton = (Button)findViewById(R.id.reservation_division_button);
+    }
+
+    private void setListeners() {
+        reservationDivisionButton.setOnClickListener((v) -> {
+            startActivity(new Intent(AppointmentByDivisionActivity.this, ViewDivisionActivity.class));
+            finish();
+        });
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((Button)findViewById(R.id.button)).setOnClickListener((v) -> {
-            startActivity(new Intent(AppointmentByDivisionActivity.this, ViewDivisionActivity.class));
-            finish();
-        });
+        initial();
+        setListeners();
     }
 
     @Override
