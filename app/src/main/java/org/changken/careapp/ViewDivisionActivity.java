@@ -49,7 +49,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
 
     private void initial() {
         Intent intent = getIntent();
-        String subDiv_id = String.valueOf(intent.getIntExtra("subDiv_id", 20));
+        String subDiv_id = String.valueOf(intent.getIntExtra("subDiv_id", 20000));
         String[] c = new String[28];
         c[0] = df.format(calendar.getTime());
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);

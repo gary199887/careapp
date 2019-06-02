@@ -153,13 +153,16 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
 
         reservationDivisionButton.setOnClickListener((v) -> {
             //傳送intent
+            int position = subDivisionSpinner.getSelectedItemPosition();
+            final int subDiv_id;
+            if (position != -1){
+                subDiv_id = subDivisionData.get(position).getFields().getSubDiv_id();
             goToPage(ViewDivisionActivity.class, (intent) -> {
                 //抓取position
-                int position = subDivisionSpinner.getSelectedItemPosition();
-                int subDiv_id = subDivisionData.get(position).getFields().getSubDiv_id();
-                showToastMessage(subDiv_id + "");
-                intent.putExtra("subDiv_id", subDiv_id);
-            });
+                    intent.putExtra("subDiv_id", subDiv_id);
+            });}
+                else
+            showToastMessage("none selected");
         });
 
         //顯示子科別
