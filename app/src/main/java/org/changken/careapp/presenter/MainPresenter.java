@@ -98,7 +98,7 @@ public class MainPresenter implements IMainPresenter {
         //確認是否有登入
         if (mMainView.checkIfLogin()) {
             mMainView.showToastMessage("哈哈您已登入唷!");
-            mMainView.goToPage(MemberCenterActivity.class);
+            mMainView.goToPageNotBack(MemberCenterActivity.class);
         }
     }
 

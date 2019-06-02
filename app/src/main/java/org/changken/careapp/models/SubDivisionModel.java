@@ -4,6 +4,7 @@ import org.changken.careapp.datamodels.AirTableDeleteResponse;
 import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.AirTableRequest;
 import org.changken.careapp.datamodels.AirTableResponse;
+import org.changken.careapp.datamodels.SubDivision;
 import org.changken.careapp.tools.RetrofitManager;
 
 import java.util.Map;
@@ -19,11 +20,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
-public class SubDivision extends BaseModel<SubDivision> {
+public class SubDivisionModel extends BaseModel<SubDivision> {
 
     private SubDivisionService mSubDivisionService;
 
-    public SubDivision() {
+    public SubDivisionModel() {
         mSubDivisionService = RetrofitManager
                 .getInstance()
                 .getRetrofit()
