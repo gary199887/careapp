@@ -126,6 +126,7 @@ submitButton.setOnClickListener((View v)->{
             @Override
             public void goReg() {
                 startActivity(new Intent(EditProfileActivity.this, ReservationActivity.class));
+                finish();
             }
 
             @Override
@@ -141,6 +142,7 @@ submitButton.setOnClickListener((View v)->{
             @Override
             public void goTrafficGuide() {
                 startActivity(new Intent(EditProfileActivity.this, TrafficInfoActivity.class));
+                finish();
             }
 
             @Override

@@ -8,4 +8,7 @@
     <string name="login_failure_input_error">登入失敗!身分證or密碼輸入錯誤!</string>
     <string name="login_failure_not_found_error">登入失敗!http回應有誤!</string>
     <string name="login_failure_inner_error">網路問題!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

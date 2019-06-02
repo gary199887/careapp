@@ -11,7 +11,12 @@ public class QRActivity extends BaseNavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
+
+
+
     @Override
     protected Nav.MenuClickAction getMenuClickAction() {
         return new Nav.MenuClickAction() {
