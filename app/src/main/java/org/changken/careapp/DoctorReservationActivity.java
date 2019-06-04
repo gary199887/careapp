@@ -22,8 +22,10 @@ public class DoctorReservationActivity extends AppCompatActivity {
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new String[]{"一", "二", "三"});
         adr_listView.setAdapter(listAdapter);
 
+        Button reservationButton = (Button)findViewById(R.id.adr_button);
 
-        ((Button)findViewById(R.id.adr_button)).setOnClickListener((v) -> {
+
+        reservationButton.setOnClickListener((v) -> {
             startActivity(new Intent(DoctorReservationActivity.this, ViewDivisionActivity.class));
             finish();
         });

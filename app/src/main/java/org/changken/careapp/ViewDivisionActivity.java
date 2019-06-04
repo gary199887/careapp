@@ -2,13 +2,15 @@ package org.changken.careapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabItem;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
-
+import android.widget.*;
 import org.changken.careapp.adapter.DivisionListAdapter;
 import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.AirTableResponse;
@@ -23,6 +25,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -34,8 +39,137 @@ public class ViewDivisionActivity extends BaseNavActivity {
     private DivisionListAdapter morningAdapter, afternoonAdapter, eveningAdapter;
     private List<AirTableResponse<DoctorTime>> morningData, afternoonData, eveningData;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private Spinner spinner;
+    private TabLayout tablayout;
+    Calendar calendar = Calendar.getInstance();
+    int addDays = 0;
+
+
+    SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
     private void initial() {
+        Intent intent = getIntent();
+        String subDiv_id = String.valueOf(intent.getIntExtra("subDiv_id", 20000));
+        String[] c = new String[28];
+        c[0] = df.format(calendar.getTime());
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        for(int i = 1; i < 28; i++){
+            calendar.add(Calendar.DATE, 1);
+            c[i] = df.format(calendar.getTime());
+        }
+        String[] items = {c[0]+" ~ "+c[6],
+        c[7]+" ~ "+c[13], c[14]+" ~ "+c[20], c[21]+" ~ "+c[27]};
+        String[] weekday = {"","(日)", "(一)", "(二)", "(三)", "(四)", "(五)", "(六)", "(日)", "(一)", "(二)", "(三)", "(四)", "(五)", "(六)"};
+        ArrayAdapter<String> catchDate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        tablayout = (TabLayout) findViewById(R.id.tabLayout);
+
+        spinner.setAdapter(catchDate);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0:
+                        //Toast.makeText(parent.getContext(), c[0], Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < 7; i++){
+                            tablayout.getTabAt(i).setText(c[i].substring(5)+weekday[dayOfWeek+i]);
+                        }
+
+                        addDays = 0;
+                        //設定RecyclerView
+                        setRecyclerView(morningList, morningAdapter);
+                        setRecyclerView(afternoonList, afternoonAdapter);
+                        setRecyclerView(eveningList, eveningAdapter);
+
+                        //從airtable上獲取醫師值班表
+                        getDivisionListData(c[addDays], subDiv_id);
+                        tablayout.getTabAt(0).select();
+                        break;
+                    case 1:
+                        //Toast.makeText(parent.getContext(), c[7], Toast.LENGTH_SHORT).show();
+                        for(int i = 0; i < 7; i++){
+                            tablayout.getTabAt(i).setText(c[i+7].substring(5)+weekday[dayOfWeek+i]);
+                        }
+                        addDays = 7;
+                        //設定RecyclerView
+                        setRecyclerView(morningList, morningAdapter);
+                        setRecyclerView(afternoonList, afternoonAdapter);
+                        setRecyclerView(eveningList, eveningAdapter);
+
+                        //從airtable上獲取醫師值班表
+                        getDivisionListData(c[addDays], subDiv_id);
+                        tablayout.getTabAt(0).select();
+                        break;
+                    case 2:
+                        //Toast.makeText(parent.getContext(), c[14], Toast.LENGTH_SHORT).show();
+                        for(int i = 0; i < 7; i++){
+                            tablayout.getTabAt(i).setText(c[i+14].substring(5)+weekday[dayOfWeek+i]);
+                        }
+                        addDays = 14;
+                        //設定RecyclerView
+                        setRecyclerView(morningList, morningAdapter);
+                        setRecyclerView(afternoonList, afternoonAdapter);
+                        setRecyclerView(eveningList, eveningAdapter);
+
+                        //從airtable上獲取醫師值班表
+                        getDivisionListData(c[addDays], subDiv_id);
+                        tablayout.getTabAt(0).select();
+                        break;
+                    case 3:
+                        //Toast.makeText(parent.getContext(), c[21], Toast.LENGTH_SHORT).show();
+                        for(int i = 0; i < 7; i++){
+                            tablayout.getTabAt(i).setText(c[i+21].substring(5)+weekday[dayOfWeek+i]);
+                        }
+                        addDays = 21;
+                        //設定RecyclerView
+                        setRecyclerView(morningList, morningAdapter);
+                        setRecyclerView(afternoonList, afternoonAdapter);
+                        setRecyclerView(eveningList, eveningAdapter);
+
+                        //從airtable上獲取醫師值班表
+                        getDivisionListData(c[addDays], subDiv_id);
+                        tablayout.getTabAt(0).select();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                // sometimes you need nothing here
+            }
+        });
+
+        tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int num = tab.getPosition();
+                //Toast.makeText(ViewDivisionActivity.this, "'"+c[num+addDays]+"'", Toast.LENGTH_SHORT).show();
+                //設定RecyclerView
+                setRecyclerView(morningList, morningAdapter);
+                setRecyclerView(afternoonList, afternoonAdapter);
+                setRecyclerView(eveningList, eveningAdapter);
+
+                //從airtable上獲取醫師值班表
+                getDivisionListData(c[num+addDays], subDiv_id);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+
+
+
         doctorTimeModel = new DoctorTimeModel();
         morningData = new ArrayList<>();
         afternoonData = new ArrayList<>();
@@ -45,7 +179,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getDivisionListData();
+                getDivisionListData(c[0], subDiv_id);
             }
         });
         //swipeRefreshLayout.setRefreshing(false);//取消刷新,因此刷新图标
@@ -69,7 +203,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
         morningAdapter.setDivisionListOnItemClickListener(new DivisionListAdapter.DivisionListOnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(ViewDivisionActivity.this, morningData.get(position).getId() + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewDivisionActivity.this, morningData.get(position).getId(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -87,14 +221,18 @@ public class ViewDivisionActivity extends BaseNavActivity {
             }
         });
 
+
         //設定RecyclerView
         setRecyclerView(morningList, morningAdapter);
         setRecyclerView(afternoonList, afternoonAdapter);
         setRecyclerView(eveningList, eveningAdapter);
 
         //從airtable上獲取醫師值班表
-        getDivisionListData();
+        getDivisionListData(c[addDays], subDiv_id);
     }
+
+
+
 
     /**
      * 設定RecyclerView
@@ -116,11 +254,11 @@ public class ViewDivisionActivity extends BaseNavActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void getDivisionListData() {
+    private void getDivisionListData(String date, String subDiv_id) {
         Map<String, String> queryMap = new HashMap<>();
 
         queryMap.put("view", "morning");
-        queryMap.put("filterByFormula", "AND({docTime_date} = DATETIME_PARSE('2019-05-08', 'YYYY-MM-DD'), {subDiv_id} = '1')");
+        queryMap.put("filterByFormula", "AND({docTime_date} = DATETIME_PARSE('"+date+"', 'YYYY/MM/DD'), {subDiv_id} = '"+subDiv_id+"')");
         //queryMap.put("sort%5B0%5D%5Bfield%5D", "docTime_dayparts");
         //queryMap.put("sort%5B0%5D%5Bdirection%5D", "asc");
 
@@ -159,7 +297,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
         queryMap.clear();
         queryMap.put("view", "afternoon");
         //SUBSTITUTE(ARRAYJOIN({subDiv_id}, ',') , ',', '') = '1'
-        queryMap.put("filterByFormula", "AND({docTime_date} = DATETIME_PARSE('2019-05-08', 'YYYY-MM-DD'), {subDiv_id} = '1')");
+        queryMap.put("filterByFormula", "AND({docTime_date} = DATETIME_PARSE('"+date+"', 'YYYY-MM-DD'), {subDiv_id} = '"+subDiv_id+"')");
         //queryMap.put("sort%5B0%5D%5Bfield%5D", "docTime_dayparts");
         //queryMap.put("sort%5B0%5D%5Bdirection%5D", "asc");
 
@@ -197,7 +335,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
 
         queryMap.clear();
         queryMap.put("view", "evening");
-        queryMap.put("filterByFormula", "AND({docTime_date} = DATETIME_PARSE('2019-05-08', 'YYYY-MM-DD'), {subDiv_id} = '1')");
+        queryMap.put("filterByFormula", "AND({docTime_date} = DATETIME_PARSE('"+date+"', 'YYYY-MM-DD'), {subDiv_id} = '"+subDiv_id+"')");
         //queryMap.put("sort%5B0%5D%5Bfield%5D", "docTime_dayparts");
         //queryMap.put("sort%5B0%5D%5Bdirection%5D", "asc");
 
@@ -238,8 +376,9 @@ public class ViewDivisionActivity extends BaseNavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        final Spinner spinner = findViewById(R.id.spinner);
         initial();
+
     }
 
     @Override

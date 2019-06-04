@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
@@ -20,7 +19,16 @@ public class ReservationActivity extends BaseNavActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReservationActivity.this, AppointmentByDivisionActivity.class));
+                startActivity(new Intent(ReservationActivity.this, ReservationByDivisionActivity.class));
+                finish();
+            }
+        });
+        final TextView textView3 = (TextView) findViewById(R.id.query_division_cancel);
+
+        textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReservationActivity.this, ReservationSearchActivity.class));
                 finish();
             }
         });

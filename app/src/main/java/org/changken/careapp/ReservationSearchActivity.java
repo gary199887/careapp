@@ -2,21 +2,16 @@ package org.changken.careapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
 
-public class AppointmentByDivisionActivity extends BaseNavActivity {
+public class ReservationSearchActivity extends BaseNavActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((Button)findViewById(R.id.button)).setOnClickListener((v) -> {
-            startActivity(new Intent(AppointmentByDivisionActivity.this, ViewDivisionActivity.class));
-            finish();
-        });
     }
 
     @Override
@@ -24,19 +19,19 @@ public class AppointmentByDivisionActivity extends BaseNavActivity {
         return new Nav.MenuClickAction() {
             @Override
             public void goMemberCenter() {
-                startActivity(new Intent(AppointmentByDivisionActivity.this, MemberCenterActivity.class));
+                startActivity(new Intent(ReservationSearchActivity.this, MemberCenterActivity.class));
                 finish();
             }
 
             @Override
             public void goPersonalInfo() {
-                startActivity(new Intent(AppointmentByDivisionActivity.this, EditProfileActivity.class));
+                startActivity(new Intent(ReservationSearchActivity.this, EditProfileActivity.class));
                 finish();
             }
 
             @Override
             public void goReg() {
-                startActivity(new Intent(AppointmentByDivisionActivity.this, ReservationActivity.class));
+                startActivity(new Intent(ReservationSearchActivity.this, ReservationActivity.class));
                 finish();
             }
 
@@ -52,20 +47,19 @@ public class AppointmentByDivisionActivity extends BaseNavActivity {
 
             @Override
             public void goTrafficGuide() {
-                startActivity(new Intent(AppointmentByDivisionActivity.this, TrafficInfoActivity.class));
+                startActivity(new Intent(ReservationSearchActivity.this, TrafficInfoActivity.class));
                 finish();
             }
 
             @Override
             public void goCheckIn() {
-                startActivity(new Intent(AppointmentByDivisionActivity.this, QRActivity.class));
-                finish();
+                //non
             }
 
             @Override
             public void goLogout() {
-                Helper.logoutProcess(AppointmentByDivisionActivity.this);
-                startActivity(new Intent(AppointmentByDivisionActivity.this, MainActivity.class));
+                Helper.logoutProcess(ReservationSearchActivity.this);
+                startActivity(new Intent(ReservationSearchActivity.this, MainActivity.class));
                 finish();
             }
         };
@@ -73,6 +67,6 @@ public class AppointmentByDivisionActivity extends BaseNavActivity {
 
     @Override
     protected int getMyOwnContentView() {
-        return R.layout.content_appointment_by_division;
+        return R.layout.content_reservation_searchandcancle;
     }
 }
