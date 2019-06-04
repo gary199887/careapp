@@ -53,8 +53,10 @@ public class DoctorReservationActivity extends BaseNavActivity {
         adrListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 AirTableResponse<Doctor> doctor = doctorList.get(position);
                 doc_id = doctor.getFields().getDoc_id();
+
             }
         });
     }

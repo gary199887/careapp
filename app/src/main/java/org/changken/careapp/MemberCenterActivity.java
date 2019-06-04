@@ -22,10 +22,12 @@ public class MemberCenterActivity extends BaseNavActivity {
         View profileLL = (LinearLayout) findViewById(R.id.personal_info);
         View trafficLL = findViewById(R.id.traffic_guide);
 
+
         reservationLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MemberCenterActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MemberCenterActivity.this, ReservationActivity.class));
+                finish();
             }
         });
         profileLL.setOnClickListener((View v)->{
