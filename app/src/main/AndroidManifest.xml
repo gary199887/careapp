@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DoctorReservationActivity"></activity>
+        <activity android:name=".ReservationSearchActivity"></activity>
         <activity android:name=".ReservationByDivisionActivity"></activity>
         <activity android:name=".ViewDivisionActivity"></activity>
         <activity
