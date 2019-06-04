@@ -18,6 +18,9 @@ public class Doctor {
     @SerializedName("subDiv_id")
     private List<String> subDiv_id;
 
+    @SerializedName("subDiv_name")
+    private List<String> subDiv_name;
+
     public Doctor(String doc_name, List<String> subDiv_id) {
         this.doc_name = doc_name;
         this.subDiv_id = subDiv_id;
@@ -49,5 +52,9 @@ public class Doctor {
 
     public void setSubDiv_id(List<String> subDiv_id) {
         this.subDiv_id = subDiv_id;
+    }
+
+    public List<String> getSubDiv_name() {
+        return subDiv_name;
     }
 }

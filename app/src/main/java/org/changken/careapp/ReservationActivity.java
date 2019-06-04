@@ -23,6 +23,17 @@ public class ReservationActivity extends BaseNavActivity {
                 finish();
             }
         });
+
+        final TextView reservationByDoctor = (TextView) findViewById(R.id.appointment_by_doctor);
+
+        reservationByDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReservationActivity.this, DoctorReservationActivity.class));
+                finish();
+            }
+        });
+
         final TextView textView3 = (TextView) findViewById(R.id.query_division_cancel);
 
         textView3.setOnClickListener(new View.OnClickListener() {
