@@ -60,7 +60,8 @@ public class MemberCenterActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(MemberCenterActivity.this, ConfirmReservationActivity.class));
+                finish();
             }
 
             @Override

@@ -21,6 +21,9 @@
             android:name=".QRActivity"
             android:label="報到" />
         <activity
+            android:name=".ConfirmReservationActivity"
+            android:label="confirm"/>
+        <activity
             android:name=".EditProfileActivity"
             android:label="修改個人資料" />
         <activity
