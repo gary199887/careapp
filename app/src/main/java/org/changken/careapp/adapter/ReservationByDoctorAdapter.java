@@ -49,6 +49,7 @@ public class ReservationByDoctorAdapter extends ArrayAdapter<AirTableResponse<Do
         doctorName.setText(doctor.getFields().getDoc_name());
         doctorSubdivision.setText(doctor.getFields().getSubDiv_name().get(0));
 
+
         return listItemView;
     }
 

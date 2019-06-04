@@ -2,9 +2,12 @@ package org.changken.careapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.changken.careapp.datamodels.AirTableListResponse;
 import org.changken.careapp.datamodels.AirTableResponse;
@@ -30,6 +33,7 @@ public class DoctorReservationActivity extends BaseNavActivity {
     private ReservationByDoctorAdapter listAdapter;
     private BaseModel<Doctor> doctorModel;
     private List<AirTableResponse<Doctor>> doctorList;
+    private int doc_id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,13 @@ public class DoctorReservationActivity extends BaseNavActivity {
 
         listAdapter = new ReservationByDoctorAdapter(this, doctorList);
         adrListView.setAdapter(listAdapter);
+        adrListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AirTableResponse<Doctor> doctor = doctorList.get(position);
+                doc_id = doctor.getFields().getDoc_id();
+            }
+        });
     }
 
     //抓airtable 資料
@@ -76,8 +87,15 @@ public class DoctorReservationActivity extends BaseNavActivity {
     //按鈕點擊邏輯事件
     private void initListeners() {
         reservationButton.setOnClickListener((v) -> {
-            startActivity(new Intent(DoctorReservationActivity.this, ViewDivisionActivity.class));
-            finish();
+            if(doc_id != -1){
+                Intent toViewDivision = new Intent(DoctorReservationActivity.this, ViewDivisionActivity.class);
+                toViewDivision.putExtra("doc_id", doc_id);
+                startActivity(toViewDivision);
+                finish();
+            }
+            else
+                Toast.makeText(DoctorReservationActivity.this, "Please select a doctor", Toast.LENGTH_SHORT).show();
+
         });
     }
 
