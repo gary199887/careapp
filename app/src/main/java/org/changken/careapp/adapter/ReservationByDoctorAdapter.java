@@ -35,12 +35,11 @@ public class ReservationByDoctorAdapter extends ArrayAdapter<AirTableResponse<Do
 
         View listItemView = convertView;
 
+
         //如果這一行為null
         if (listItemView == null) {
             //解析一個新的外觀檔進來
-            listItemView = LayoutInflater
-                    .from(mContext)
-                    .inflate(R.layout.doctor_list_cell, parent, false);
+            listItemView = LayoutInflater.from(mContext).inflate(R.layout.doctor_list_cell, parent, false);
         }
 
         TextView doctorName = (TextView) listItemView.findViewById(R.id.doctor_name);

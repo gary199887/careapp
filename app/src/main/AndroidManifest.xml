@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DoctorReservationActivity"></activity>
-        <activity android:name=".ReservationSearchActivity"></activity>
-        <activity android:name=".ReservationByDivisionActivity"></activity>
-        <activity android:name=".ViewDivisionActivity"></activity>
+        <activity android:name=".RegistrationRecord"></activity>
+        <activity android:name=".DoctorReservationActivity" />
+        <activity android:name=".ReservationSearchActivity" />
+        <activity android:name=".ReservationByDivisionActivity" />
+        <activity android:name=".ViewDivisionActivity" />
         <activity
             android:name=".TrafficInfoActivity"
             android:label="交通指引" />
@@ -24,7 +25,7 @@
             android:label="報到" />
         <activity
             android:name=".ConfirmReservationActivity"
-            android:label="confirm"/>
+            android:label="confirm" />
         <activity
             android:name=".EditProfileActivity"
             android:label="修改個人資料" />
