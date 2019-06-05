@@ -31,7 +31,7 @@ public class EditProfileActivity extends BaseNavActivity {
 
         String recordId = Helper.getUserRecordId(EditProfileActivity.this);  //傳入airtable唯一ID
         userModel.get(recordId, new ModelCallback<AirTableResponse<User>>() {
-            @Override
+                @Override
             public void onResponseSuccess(Call<AirTableResponse<User>> call, Response<AirTableResponse<User>> response) {
                 //Toast.makeText(EditProfileActivity.this, "", Toast.LENGTH_SHORT).show();
                 name_field.setText(response.body().getFields().getName(), TextView.BufferType.EDITABLE);

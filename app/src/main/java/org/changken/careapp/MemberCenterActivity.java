@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import org.changken.careapp.datamodels.Reservation;
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
 
@@ -25,7 +26,8 @@ public class MemberCenterActivity extends BaseNavActivity {
         reservationLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MemberCenterActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MemberCenterActivity.this, ReservationActivity.class));
+                finish();
             }
         });
         profileLL.setOnClickListener((View v)->{

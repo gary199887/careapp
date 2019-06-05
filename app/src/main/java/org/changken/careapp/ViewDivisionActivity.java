@@ -231,7 +231,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
         morningAdapter.setDivisionListOnItemClickListener(new DivisionListAdapter.DivisionListOnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(ViewDivisionActivity.this, morningData.get(position).getId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ViewDivisionActivity.this, morningData.get(position).getId(), Toast.LENGTH_SHORT).show();
                 toConfirm = new Intent(ViewDivisionActivity.this, ConfirmReservationActivity.class);
                 toConfirm.putExtra("recordId", morningData.get(position).getId());
                 toConfirm.putExtra("userId", userId);
@@ -244,7 +244,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
         afternoonAdapter.setDivisionListOnItemClickListener(new DivisionListAdapter.DivisionListOnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(ViewDivisionActivity.this, afternoonData.get(position).getId() + "", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ViewDivisionActivity.this, afternoonData.get(position).getId() + "", Toast.LENGTH_SHORT).show();
                 toConfirm = new Intent(ViewDivisionActivity.this, ConfirmReservationActivity.class);
                 toConfirm.putExtra("recordId", afternoonData.get(position).getId());
                 toConfirm.putExtra("userId", userId);
@@ -257,7 +257,7 @@ public class ViewDivisionActivity extends BaseNavActivity {
         eveningAdapter.setDivisionListOnItemClickListener(new DivisionListAdapter.DivisionListOnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(ViewDivisionActivity.this, eveningData.get(position).getId() + "", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ViewDivisionActivity.this, eveningData.get(position).getId() + "", Toast.LENGTH_SHORT).show();
                 toConfirm = new Intent(ViewDivisionActivity.this, ConfirmReservationActivity.class);
                 toConfirm.putExtra("recordId", eveningData.get(position).getId());
                 toConfirm.putExtra("userId", userId);
