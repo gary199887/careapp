@@ -43,6 +43,15 @@ public class ReservationActivity extends BaseNavActivity {
                 finish();
             }
         });
+        final TextView textView4 = (TextView) findViewById(R.id.check_in);
+
+        textView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReservationActivity.this, QRActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
