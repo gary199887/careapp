@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import org.changken.careapp.datamodels.Reservation;
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
 
@@ -22,6 +21,7 @@ public class MemberCenterActivity extends BaseNavActivity {
         View reservationLL = (LinearLayout) findViewById(R.id.reservation);
         View profileLL = (LinearLayout) findViewById(R.id.personal_info);
         View trafficLL = findViewById(R.id.traffic_guide);
+        View registerLL = findViewById(R.id.register_record);
 
 
         reservationLL.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +37,10 @@ public class MemberCenterActivity extends BaseNavActivity {
         });
         trafficLL.setOnClickListener((View v)->{
             startActivity(new Intent(MemberCenterActivity.this, TrafficInfoActivity.class));
+            finish();
+        });
+        registerLL.setOnClickListener((View v)->{
+            startActivity(new Intent(MemberCenterActivity.this, RegistrationRecordActivity.class));
             finish();
         });
     }
@@ -69,7 +73,8 @@ public class MemberCenterActivity extends BaseNavActivity {
 
             @Override
             public void goRegRecord() {
-
+                startActivity(new Intent(MemberCenterActivity.this, RegistrationRecordActivity.class));
+                finish();
             }
 
             @Override

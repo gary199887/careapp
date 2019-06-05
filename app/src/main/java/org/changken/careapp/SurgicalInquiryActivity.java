@@ -3,11 +3,11 @@ package org.changken.careapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RegistrationRecord extends AppCompatActivity {
+public class SurgicalInquiryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_record);
+        setContentView(R.layout.activity_surgical_inquiry);
     }
 }

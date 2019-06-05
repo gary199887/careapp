@@ -6,7 +6,7 @@ import android.os.Bundle;
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
 
-public class QRActivity extends BaseNavActivity {
+public class RegistrationRecordActivity extends BaseNavActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,19 +22,19 @@ public class QRActivity extends BaseNavActivity {
         return new Nav.MenuClickAction() {
             @Override
             public void goMemberCenter() {
-                startActivity(new Intent(QRActivity.this, MemberCenterActivity.class));
+                startActivity(new Intent(RegistrationRecordActivity.this, MemberCenterActivity.class));
                 finish();
             }
 
             @Override
             public void goPersonalInfo() {
-                startActivity(new Intent(QRActivity.this, EditProfileActivity.class));
+                startActivity(new Intent(RegistrationRecordActivity.this, EditProfileActivity.class));
                 finish();
             }
 
             @Override
             public void goReg() {
-                startActivity(new Intent(QRActivity.this, ReservationActivity.class));
+                startActivity(new Intent(RegistrationRecordActivity.this, ReservationActivity.class));
                 finish();
             }
 
@@ -45,13 +45,13 @@ public class QRActivity extends BaseNavActivity {
 
             @Override
             public void goRegRecord() {
-                startActivity(new Intent(QRActivity.this, RegistrationRecordActivity.class));
+                startActivity(new Intent(RegistrationRecordActivity.this, RegistrationRecordActivity.class));
                 finish();
             }
 
             @Override
             public void goTrafficGuide() {
-                startActivity(new Intent(QRActivity.this, TrafficInfoActivity.class));
+                startActivity(new Intent(RegistrationRecordActivity.this, TrafficInfoActivity.class));
                 finish();
             }
 
@@ -62,8 +62,8 @@ public class QRActivity extends BaseNavActivity {
 
             @Override
             public void goLogout() {
-                Helper.logoutProcess(QRActivity.this);
-                startActivity(new Intent(QRActivity.this, MainActivity.class));
+                Helper.logoutProcess(RegistrationRecordActivity.this);
+                startActivity(new Intent(RegistrationRecordActivity.this, MainActivity.class));
                 finish();
             }
         };
@@ -71,7 +71,7 @@ public class QRActivity extends BaseNavActivity {
 
     @Override
     protected int getMyOwnContentView() {
-        return R.layout.activity_qr;
+        return R.layout.activity_registration_record;
     }
 
 }

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegistrationRecord"></activity>
+        <activity android:name=".SurgicalInquiryActivity"></activity>
+        <activity android:name=".RegistrationRecordActivity" />
         <activity android:name=".DoctorReservationActivity" />
         <activity android:name=".ReservationSearchActivity" />
         <activity android:name=".ReservationByDivisionActivity" />
