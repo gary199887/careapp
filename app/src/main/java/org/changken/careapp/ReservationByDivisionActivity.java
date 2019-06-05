@@ -55,20 +55,32 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
     }
 
     private void initData() {
+        setReservationDivisionBtnStatus(false, false);
+
         divisionSpinnerAdapter = new DivisionSpinnerAdapter(this, divisionData);
+        divisionSpinnerAdapter.setDropDownViewResource(R.layout.spinner_cell);
         divisionSpinner.setAdapter(divisionSpinnerAdapter);
         //更新大科別資料
         updateDivisionSpinner();
 
         subDivisionSpinnerAdapter = new SubDivisionSpinnerAdapter(this, subDivisionData);
+        subDivisionSpinnerAdapter.setDropDownViewResource(R.layout.spinner_cell);
         subDivisionSpinner.setAdapter(subDivisionSpinnerAdapter);
     }
 
     private void updateDivisionSpinner() {
-        updateDivisionSpinner("");
+        updateDivisionSpinner("", false);
     }
 
     private void updateDivisionSpinner(String formula) {
+        updateDivisionSpinner(formula, false);
+    }
+
+    private void updateDivisionSpinner(boolean isReset){
+        updateDivisionSpinner("", isReset);
+    }
+
+    private void updateDivisionSpinner(String formula, boolean isReset) {
         Map<String, String> queryMap = new HashMap<>();
         queryMap.put("view", "Grid%20view");
         queryMap.put("filterByFormula", formula);
@@ -78,6 +90,14 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
             public void onResponseSuccess(Call<AirTableListResponse<Division>> call, Response<AirTableListResponse<Division>> response) {
                 divisionData = response.body().getRecords();
                 divisionSpinnerAdapter.updateData(divisionData);
+                divisionSpinner.setSelection(0, true);
+
+                // 如果是清除搜尋框
+                // 以第一筆大科別來更新子科別
+                if(isReset && response.body().getRecords().size() > 0){
+                    int firstDivId = response.body().getRecords().get(0).getFields().getDiv_id();
+                    updateSubDivisionSpinner("{div_id} = '" + firstDivId + "'");
+                }
             }
 
             @Override
@@ -92,7 +112,7 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
         });
     }
 
-    private void updateSubDivisionSpinner(){
+    private void updateSubDivisionSpinner() {
         updateSubDivisionSpinner("");
     }
 
@@ -106,6 +126,7 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
             public void onResponseSuccess(Call<AirTableListResponse<SubDivision>> call, Response<AirTableListResponse<SubDivision>> response) {
                 subDivisionData = response.body().getRecords();
                 subDivisionSpinnerAdapter.updateData(subDivisionData);
+                subDivisionSpinner.setSelection(0, true);
             }
 
             @Override
@@ -144,9 +165,7 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
             @Override
             public boolean onClose() {
                 //更新大科別
-                updateDivisionSpinner();
-                //更新子科別
-                //updateSubDivisionSpinner();
+                updateDivisionSpinner(true);
                 return false;
             }
         });
@@ -154,15 +173,18 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
         reservationDivisionButton.setOnClickListener((v) -> {
             //傳送intent
             int position = subDivisionSpinner.getSelectedItemPosition();
+
             final int subDiv_id;
-            if (position != -1){
+
+            if (position != -1) {
                 subDiv_id = subDivisionData.get(position).getFields().getSubDiv_id();
-            goToPage(ViewDivisionActivity.class, (intent) -> {
-                //抓取position
+                goToPage(ViewDivisionActivity.class, (intent) -> {
+                    //抓取position
                     intent.putExtra("subDiv_id", subDiv_id);
-            });}
-                else
-            showToastMessage("none selected");
+                });
+            } else {
+                showToastMessage("none selected");
+            }
         });
 
         //顯示子科別
@@ -174,9 +196,28 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                //nothing
+                setReservationDivisionBtnStatus(false, false);
+                showToastMessage("none selected");
             }
         });
+
+        subDivisionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setReservationDivisionBtnStatus(true, true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                setReservationDivisionBtnStatus(false, false);
+                showToastMessage("none select");
+            }
+        });
+    }
+
+    private void setReservationDivisionBtnStatus(boolean isEnabled, boolean isClicked) {
+        reservationDivisionButton.setEnabled(isEnabled);
+        reservationDivisionButton.setClickable(isClicked);
     }
 
     //顯示toast訊息
@@ -191,7 +232,7 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
         });
     }
 
-    private void goToPage(Class<?> cls, IntentData intentData){
+    private void goToPage(Class<?> cls, IntentData intentData) {
         Intent intent = new Intent(this, cls);
         //放置資料使用
         intentData.putData(intent);
