@@ -136,7 +136,8 @@ submitButton.setOnClickListener((View v)->{
 
             @Override
             public void goRegRecord() {
-
+                startActivity(new Intent(EditProfileActivity.this, RegistrationRecordActivity.class));
+                finish();
             }
 
             @Override

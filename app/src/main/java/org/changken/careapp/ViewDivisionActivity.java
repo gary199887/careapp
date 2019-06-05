@@ -467,7 +467,8 @@ public class ViewDivisionActivity extends BaseNavActivity {
 
             @Override
             public void goRegRecord() {
-
+                startActivity(new Intent(ViewDivisionActivity.this, RegistrationRecordActivity.class));
+                finish();
             }
 
             @Override

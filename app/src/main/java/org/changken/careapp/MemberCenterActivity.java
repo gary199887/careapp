@@ -22,7 +22,7 @@ public class MemberCenterActivity extends BaseNavActivity {
         View profileLL = (LinearLayout) findViewById(R.id.personal_info);
         View trafficLL = findViewById(R.id.traffic_guide);
         View registerLL = findViewById(R.id.register_record);
-
+        View surgery_queryLL = findViewById(R.id.surgery_query);
 
         reservationLL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +41,10 @@ public class MemberCenterActivity extends BaseNavActivity {
         });
         registerLL.setOnClickListener((View v)->{
             startActivity(new Intent(MemberCenterActivity.this, RegistrationRecordActivity.class));
+            finish();
+        });
+        surgery_queryLL.setOnClickListener((View v)->{
+            startActivity(new Intent(MemberCenterActivity.this, SurgicalInquiryActivity.class));
             finish();
         });
     }

@@ -233,7 +233,8 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
 
             @Override
             public void goRegRecord() {
-
+                startActivity(new Intent(ReservationByDivisionActivity.this, RegistrationRecordActivity.class));
+                finish();
             }
 
             @Override

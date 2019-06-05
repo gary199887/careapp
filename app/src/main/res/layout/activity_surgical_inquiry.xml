@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:padding="16dp"
-    tools:context=".SurgicalInquiryActivity">
+    tools:context=".SurgicalInquryActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
         <LinearLayout
             android:id="@+id/textView1"
             android:layout_width="307dp"
-            android:layout_height="140dp"
+            android:layout_height="180dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -55,18 +55,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="就診日期:2018/12/31" />
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="就診醫院:輔大醫院" />
+                    android:text="手術類型:肺水腫" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="科別:ADSL科" />
+                    android:text="手術室:3001" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -74,18 +78,19 @@
                     android:layout_height="35dp"
                     android:text="醫生:吳短耕" />
 
+
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/textView22"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="就診日期:2018/12/31" />
+                    android:text="手術狀態:手術中"/>
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/textView2"
             android:layout_width="307dp"
-            android:layout_height="140dp"
+            android:layout_height="180dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -108,18 +113,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="就診日期:2019/06/01" />
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="就診醫院:輔大醫院" />
+                    android:text="手術類型:盲腸炎" />
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="科別:放射科" />
+                    android:text="手術室:3302" />
 
                 <TextView
                     android:id="@+id/textView18"
@@ -127,18 +136,19 @@
                     android:layout_height="35dp"
                     android:text="醫生:吳小耕" />
 
+
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/textView23"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="就診日期:2018/12/31" />
+                    android:text="手術狀態:未動刀"/>
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/picture"
             android:layout_width="0dp"
-            android:layout_height="125dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
@@ -154,12 +164,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="以下是您的手術相關紀錄" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/textView3"
             android:layout_width="307dp"
-            android:layout_height="140dp"
+            android:layout_height="180dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
@@ -182,18 +193,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="就診日期:2019/04/04"/>
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="就診醫院:輔大醫院" />
+                    android:text="手術類型:惡性腫瘤" />
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="科別:腫瘤科" />
+                    android:text="手術室:3340" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -201,27 +216,14 @@
                     android:layout_height="35dp"
                     android:text="醫生:吳大耕" />
 
+
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/textView21"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="就診日期:2018/12/31" />
+                    android:text="手術狀態:已動刀"/>
             </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:layout_marginLeft="130dp"
-            android:layout_marginEnd="161dp"
-            android:layout_marginRight="161dp"
-            android:text="刪除此周掛號紀錄"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
     </android.support.constraint.ConstraintLayout>

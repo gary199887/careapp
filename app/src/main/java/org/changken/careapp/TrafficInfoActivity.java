@@ -41,7 +41,8 @@ public class TrafficInfoActivity extends BaseNavActivity {
 
             @Override
             public void goRegRecord() {
-
+                startActivity(new Intent(TrafficInfoActivity.this, RegistrationRecordActivity.class));
+                finish();
             }
 
             @Override

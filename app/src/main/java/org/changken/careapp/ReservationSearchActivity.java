@@ -42,7 +42,8 @@ public class ReservationSearchActivity extends BaseNavActivity {
 
             @Override
             public void goRegRecord() {
-
+                startActivity(new Intent(ReservationSearchActivity.this, RegistrationRecordActivity.class));
+                finish();
             }
 
             @Override
