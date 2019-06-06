@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:padding="16dp"
-    tools:context=".SurgicalInquryActivity">
+    tools:context=".SurgicalInquiryActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -163,6 +163,7 @@
                 android:id="@+id/textView20"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textSize = "32sp"
                 android:text="以下是您的手術相關紀錄" />
 
         </LinearLayout>
