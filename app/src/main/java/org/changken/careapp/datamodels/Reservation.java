@@ -33,6 +33,15 @@ public class Reservation {
     @SerializedName("doc_name")
     private List<String> doc_name;
 
+    @SerializedName("docTime_room")
+    private List<String> docTime_room;
+
+    @SerializedName("docTime_currentNum")
+    private List<Integer> docTime_currentNum;
+
+    @SerializedName("docTime_daypartAndDate")
+    private List<String> docTime_daypartAndDate;
+
     public Reservation(int res_num, int res_status, List<String> user_id, List<String> docTime_id) {
         this.res_num = res_num;
         this.res_status = res_status;
@@ -94,5 +103,17 @@ public class Reservation {
 
     public List<String> getDoc_name() {
         return doc_name;
+    }
+
+    public List<String> getDocTime_room() {
+        return docTime_room;
+    }
+
+    public List<Integer> getDocTime_currentNum() {
+        return docTime_currentNum;
+    }
+
+    public List<String> getDocTime_daypartAndDate() {
+        return docTime_daypartAndDate;
     }
 }
