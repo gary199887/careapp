@@ -113,17 +113,20 @@ public class DoctorReservationActivity extends BaseNavActivity {
         return new Nav.MenuClickAction() {
             @Override
             public void goMemberCenter() {
-
+                startActivity(new Intent(DoctorReservationActivity.this, MemberCenterActivity.class));
+                finish();
             }
 
             @Override
             public void goPersonalInfo() {
-
+                startActivity(new Intent(DoctorReservationActivity.this, EditProfileActivity.class));
+                finish();
             }
 
             @Override
             public void goReg() {
-
+                startActivity(new Intent(DoctorReservationActivity.this, ReservationActivity.class));
+                finish();
             }
 
             @Override
@@ -139,7 +142,8 @@ public class DoctorReservationActivity extends BaseNavActivity {
 
             @Override
             public void goTrafficGuide() {
-
+                startActivity(new Intent(DoctorReservationActivity.this, TrafficInfoActivity.class));
+                finish();
             }
 
             @Override
