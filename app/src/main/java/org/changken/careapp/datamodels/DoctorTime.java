@@ -10,7 +10,7 @@ public class DoctorTime {
     private String docTime_room;
 
     @SerializedName("docTime_id")
-    private int docTime_id;
+    private Integer docTime_id = null;
 
     @SerializedName("docTime_date")
     private String docTime_date;
@@ -38,6 +38,9 @@ public class DoctorTime {
 
     @SerializedName("subDiv_id")
     private List<String> subDiv_id;
+
+    @SerializedName("subDiv_name")
+    private List<String> subDiv_name;
 
     public DoctorTime(String docTime_room, String docTime_date, int docTime_dayparts, int docTime_maxAmount, int docTime_currentNum, List<String> res_id, List<String> doc_id) {
         this.docTime_room = docTime_room;
@@ -123,5 +126,9 @@ public class DoctorTime {
 
     public List<String> getSubDiv_id() {
         return subDiv_id;
+    }
+
+    public List<String> getSubDiv_name() {
+        return subDiv_name;
     }
 }

@@ -10,7 +10,7 @@ public class Reservation {
     private int res_num;
 
     @SerializedName("res_id")
-    private int res_id;
+    private Integer res_id = null;
 
     @SerializedName("res_status")
     private int res_status;
@@ -40,7 +40,7 @@ public class Reservation {
     private List<Integer> docTime_currentNum;
 
     @SerializedName("docTime_daypartAndDate")
-    private List<String> docTime_daypartAndDate;
+    private String docTime_daypartAndDate;
 
     public Reservation(int res_num, int res_status, List<String> user_id, List<String> docTime_id) {
         this.res_num = res_num;
@@ -113,7 +113,7 @@ public class Reservation {
         return docTime_currentNum;
     }
 
-    public List<String> getDocTime_daypartAndDate() {
+    public String getDocTime_daypartAndDate() {
         return docTime_daypartAndDate;
     }
 }

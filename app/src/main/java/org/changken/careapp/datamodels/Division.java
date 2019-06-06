@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Division {
 
-    private int div_id;
+    private Integer div_id = null;
     private String div_name;
     private List<String> subDiv_id;
 

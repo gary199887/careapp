@@ -9,6 +9,9 @@ public class AirTableRequest<T> {
     @SerializedName("fields")
     private T fields;
 
+    @SerializedName("typecast")
+    private boolean typecast = true;
+
     public AirTableRequest(T fields) {
         this.fields = fields;
     }

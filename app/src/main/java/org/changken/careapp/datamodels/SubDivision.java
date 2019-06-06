@@ -5,7 +5,7 @@ import java.util.List;
 public class SubDivision {
 
     private String subDiv_name;
-    private int subDiv_id;
+    private Integer subDiv_id = null;
     private List<String> div_id;
     private List<String> doc_id;
 

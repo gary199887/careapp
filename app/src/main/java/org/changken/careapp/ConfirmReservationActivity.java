@@ -55,7 +55,7 @@ public class ConfirmReservationActivity extends BaseNavActivity {
             @Override
             public void onResponseSuccess(Call<AirTableResponse<DoctorTime>> call, Response<AirTableResponse<DoctorTime>> response) {
                 date.setText(date.getText() + response.body().getFields().getDocTime_date(), TextView.BufferType.EDITABLE);
-                subject.setText(subject.getText() + response.body().getFields().getSubDiv_id().get(0), TextView.BufferType.EDITABLE);
+                subject.setText(subject.getText() + response.body().getFields().getSubDiv_name().get(0), TextView.BufferType.EDITABLE);
                 doctor.setText(doctor.getText() + response.body().getFields().getDoc_name().get(0), TextView.BufferType.EDITABLE);
                 resCount = response.body().getFields().getDocTime_resCount();
                 docTime_id = response.body().getFields().getDocTime_id();

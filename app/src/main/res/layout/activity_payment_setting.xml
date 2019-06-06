@@ -52,8 +52,7 @@
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="116dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/visaimage" />
+                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,8 +108,7 @@
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="116dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/masterimage" />
+                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"

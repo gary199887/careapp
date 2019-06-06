@@ -7,7 +7,7 @@ import java.util.List;
 public class Doctor {
 
     @SerializedName("doc_id")
-    private int doc_id;
+    private Integer doc_id = null;
 
     @SerializedName("doc_name")
     private String doc_name;
