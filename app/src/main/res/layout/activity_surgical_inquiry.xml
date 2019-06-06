@@ -163,7 +163,8 @@
                 android:id="@+id/textView20"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize = "32sp"
+                android:textSize = "28sp"
+                android:gravity="center_horizontal"
                 android:text="以下是您的手術相關紀錄" />
 
         </LinearLayout>
