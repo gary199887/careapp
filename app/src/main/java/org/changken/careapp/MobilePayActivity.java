@@ -14,7 +14,7 @@ public class MobilePayActivity extends BaseNavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mobile_pay);
+
         Button button = findViewById(R.id.paySetButton);
         button.setOnClickListener((v)-> {
            startActivity(new Intent(MobilePayActivity.this, PaymentSettingActivity.class));
