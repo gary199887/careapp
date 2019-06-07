@@ -12,8 +12,9 @@ public class PaymentSettingActivity extends BaseNavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_setting);
+
     }
+
     @Override
     protected Nav.MenuClickAction getMenuClickAction() {
         return new Nav.MenuClickAction() {

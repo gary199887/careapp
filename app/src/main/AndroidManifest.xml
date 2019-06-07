@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PaymentRecordActivity"></activity>
+        <activity android:name=".PaymentSettingActivity"></activity>
         <activity android:name=".MobilePayActivity"></activity>
         <activity android:name=".SurgicalInquiryActivity" />
         <activity android:name=".RegistrationRecordActivity" />
