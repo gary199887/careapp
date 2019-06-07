@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="203dp"
+        android:layout_height="185dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/reservationDivision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="預約科別: "
+            android:textAppearance="?android:textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/doctorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="醫師: "
+            android:textAppearance="?android:textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/doctimeDateAndDatepart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="看診時間:  "
+            android:textAppearance="?android:textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/doctimeMyNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="我的看診序號:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/doctimeCurrentNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="目前看診序號:"
+            android:textAppearance="?android:textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/docRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="診間號碼:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="104dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:text="取消" />
+</LinearLayout>

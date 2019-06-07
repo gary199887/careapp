@@ -42,6 +42,9 @@ public class Reservation {
     @SerializedName("docTime_daypartAndDate")
     private String docTime_daypartAndDate;
 
+    @SerializedName("subDiv_name")
+    private List<String> subDiv_name;
+
     public Reservation(int res_num, int res_status, List<String> user_id, List<String> docTime_id) {
         this.res_num = res_num;
         this.res_status = res_status;
@@ -115,5 +118,9 @@ public class Reservation {
 
     public String getDocTime_daypartAndDate() {
         return docTime_daypartAndDate;
+    }
+
+    public List<String> getSubDiv_name() {
+        return subDiv_name;
     }
 }
