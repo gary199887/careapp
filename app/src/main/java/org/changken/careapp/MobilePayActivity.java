@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
@@ -16,11 +18,20 @@ public class MobilePayActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
 
         Button button = findViewById(R.id.paySetButton);
-        button.setOnClickListener((v)-> {
-           startActivity(new Intent(MobilePayActivity.this, PaymentSettingActivity.class));
-           finish();
+        button.setOnClickListener((v) -> {
+            startActivity(new Intent(MobilePayActivity.this, PaymentSettingActivity.class));
+            finish();
         });
+        TextView textView3 = findViewById(R.id.textView24);
+
+        textView3.setOnClickListener((v)-> {
+
+            startActivity(new Intent(MobilePayActivity.this, PaymentRecordActivity.class));
+            finish();
+        });
+
     }
+
     @Override
     protected Nav.MenuClickAction getMenuClickAction() {
         return new Nav.MenuClickAction() {
