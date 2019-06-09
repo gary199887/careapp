@@ -38,7 +38,7 @@ public class PaymentSettingActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-                startActivity(new Intent(PaymentSettingActivity.this, ConfirmReservationActivity.class));
+                startActivity(new Intent(PaymentSettingActivity.this, ReservationSearchActivity.class));
                 finish();
             }
 

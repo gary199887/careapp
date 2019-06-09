@@ -58,7 +58,8 @@ public class SurgicalInquiryActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(SurgicalInquiryActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override
@@ -75,7 +76,8 @@ public class SurgicalInquiryActivity extends BaseNavActivity {
 
             @Override
             public void goCheckIn() {
-                //non
+                startActivity(new Intent(SurgicalInquiryActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override

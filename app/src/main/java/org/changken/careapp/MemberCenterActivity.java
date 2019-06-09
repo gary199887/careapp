@@ -5,8 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.changken.careapp.tools.Helper;
@@ -18,40 +19,57 @@ public class MemberCenterActivity extends BaseNavActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View reservationLL = (LinearLayout) findViewById(R.id.reservation);
-        View profileLL = (LinearLayout) findViewById(R.id.personal_info);
+        View reservationLL = findViewById(R.id.reservation);
+        View profileLL = findViewById(R.id.personal_info);
         View trafficLL = findViewById(R.id.traffic_guide);
         View registerLL = findViewById(R.id.register_record);
         View surgery_queryLL = findViewById(R.id.surgery_query);
         View mobile_payLL = findViewById(R.id.mobile_pay);
 
-        reservationLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MemberCenterActivity.this, ReservationActivity.class));
-                finish();
-            }
+        reservationLL.setOnClickListener((View v) -> {
+            startActivity(new Intent(MemberCenterActivity.this, ReservationActivity.class));
+            finish();
         });
-        profileLL.setOnClickListener((View v)->{
+
+        profileLL.setOnClickListener((View v) -> {
             startActivity(new Intent(MemberCenterActivity.this, EditProfileActivity.class));
             finish();
         });
-        trafficLL.setOnClickListener((View v)->{
+
+        trafficLL.setOnClickListener((View v) -> {
             startActivity(new Intent(MemberCenterActivity.this, TrafficInfoActivity.class));
             finish();
         });
-        registerLL.setOnClickListener((View v)->{
+
+        registerLL.setOnClickListener((View v) -> {
             startActivity(new Intent(MemberCenterActivity.this, RegistrationRecordActivity.class));
             finish();
         });
-        surgery_queryLL.setOnClickListener((View v)->{
+
+        surgery_queryLL.setOnClickListener((View v) -> {
             startActivity(new Intent(MemberCenterActivity.this, SurgicalInquiryActivity.class));
             finish();
         });
-        mobile_payLL.setOnClickListener((View v)->{
+
+        mobile_payLL.setOnClickListener((View v) -> {
             startActivity(new Intent(MemberCenterActivity.this, MobilePayActivity.class));
             finish();
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.member_center, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_view_notice) {
+            startActivity(new Intent(MemberCenterActivity.this, NotificationActivity.class));
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -76,7 +94,7 @@ public class MemberCenterActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-                startActivity(new Intent(MemberCenterActivity.this, ConfirmReservationActivity.class));
+                startActivity(new Intent(MemberCenterActivity.this, ReservationSearchActivity.class));
                 finish();
             }
 

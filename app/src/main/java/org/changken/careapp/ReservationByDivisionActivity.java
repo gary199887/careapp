@@ -76,7 +76,7 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
         updateDivisionSpinner(formula, false);
     }
 
-    private void updateDivisionSpinner(boolean isReset){
+    private void updateDivisionSpinner(boolean isReset) {
         updateDivisionSpinner("", isReset);
     }
 
@@ -94,7 +94,7 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
 
                 // 如果是清除搜尋框
                 // 以第一筆大科別來更新子科別
-                if(isReset && response.body().getRecords().size() > 0){
+                if (isReset && response.body().getRecords().size() > 0) {
                     int firstDivId = response.body().getRecords().get(0).getFields().getDiv_id();
                     updateSubDivisionSpinner("{div_id} = '" + firstDivId + "'");
                 }
@@ -269,13 +269,12 @@ public class ReservationByDivisionActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                goToPage(ReservationSearchActivity.class);
             }
 
             @Override
             public void goRegRecord() {
-                startActivity(new Intent(ReservationByDivisionActivity.this, RegistrationRecordActivity.class));
-                finish();
+                goToPage(RegistrationRecordActivity.class);
             }
 
             @Override

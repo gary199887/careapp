@@ -36,7 +36,8 @@ public class TrafficInfoActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(TrafficInfoActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override

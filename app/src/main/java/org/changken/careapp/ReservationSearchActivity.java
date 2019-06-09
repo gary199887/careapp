@@ -105,7 +105,7 @@ public class ReservationSearchActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                //non
             }
 
             @Override
@@ -122,7 +122,8 @@ public class ReservationSearchActivity extends BaseNavActivity {
 
             @Override
             public void goCheckIn() {
-                //non
+                startActivity(new Intent(ReservationSearchActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override

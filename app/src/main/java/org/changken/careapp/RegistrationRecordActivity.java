@@ -60,7 +60,8 @@ public class RegistrationRecordActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(RegistrationRecordActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override
@@ -77,7 +78,8 @@ public class RegistrationRecordActivity extends BaseNavActivity {
 
             @Override
             public void goCheckIn() {
-                //non
+                startActivity(new Intent(RegistrationRecordActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override

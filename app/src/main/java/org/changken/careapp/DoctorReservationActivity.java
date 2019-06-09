@@ -15,6 +15,7 @@ import org.changken.careapp.datamodels.Doctor;
 import org.changken.careapp.models.BaseModel;
 import org.changken.careapp.models.DoctorModel;
 import org.changken.careapp.models.ModelCallback;
+import org.changken.careapp.tools.Helper;
 import org.changken.careapp.tools.Nav;
 import org.changken.careapp.adapter.ReservationByDoctorAdapter;
 
@@ -131,7 +132,8 @@ public class DoctorReservationActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(DoctorReservationActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override
@@ -148,12 +150,15 @@ public class DoctorReservationActivity extends BaseNavActivity {
 
             @Override
             public void goCheckIn() {
-
+                startActivity(new Intent(DoctorReservationActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override
             public void goLogout() {
-
+                Helper.logoutProcess(DoctorReservationActivity.this);
+                startActivity(new Intent(DoctorReservationActivity.this, MainActivity.class));
+                finish();
             }
         };
     }

@@ -76,7 +76,8 @@ public class ReservationActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(ReservationActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override

@@ -462,7 +462,8 @@ public class ViewDivisionActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(ViewDivisionActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override

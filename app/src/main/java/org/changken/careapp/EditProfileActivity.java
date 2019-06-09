@@ -120,7 +120,7 @@ submitButton.setOnClickListener((View v)->{
 
             @Override
             public void goPersonalInfo() {
-
+                //non
             }
 
             @Override
@@ -131,7 +131,8 @@ submitButton.setOnClickListener((View v)->{
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(EditProfileActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override

@@ -40,7 +40,8 @@ public class QRActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(QRActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override

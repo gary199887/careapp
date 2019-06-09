@@ -128,12 +128,14 @@ public class ConfirmReservationActivity extends BaseNavActivity {
 
             @Override
             public void goQueryCancel() {
-
+                startActivity(new Intent(ConfirmReservationActivity.this, ReservationSearchActivity.class));
+                finish();
             }
 
             @Override
             public void goRegRecord() {
-
+                startActivity(new Intent(ConfirmReservationActivity.this, RegistrationRecordActivity.class));
+                finish();
             }
 
             @Override
@@ -144,7 +146,8 @@ public class ConfirmReservationActivity extends BaseNavActivity {
 
             @Override
             public void goCheckIn() {
-                //non
+                startActivity(new Intent(ConfirmReservationActivity.this, QRActivity.class));
+                finish();
             }
 
             @Override
