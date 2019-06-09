@@ -70,6 +70,7 @@ submitButton.setOnClickListener((View v)->{
         user.setEmail(email);
         user.setPhone(phone);
         user.setPassword(pw);
+        user.setAddress(address);
 
         //建立並執行新增資料的請求
         userModel.update(recordId,user,new ModelCallback<AirTableResponse<User>>() {

@@ -25,8 +25,8 @@ public class NotificationActivity extends BaseNavActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_view_notice_setting) {
-            //TODO 記得加上提醒設定頁面
-            Toast.makeText(this, "提醒設定要記得做!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(NotificationActivity.this, NotificationSettingActivity.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
