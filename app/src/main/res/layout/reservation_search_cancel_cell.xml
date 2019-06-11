@@ -61,42 +61,42 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewnull1"
+            android:id="@+id/reservationDivision_data"
             android:layout_width="match_parent"
             android:layout_height="29dp"
             android:text="TextView"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textViewnull2"
+            android:id="@+id/doctorName_data"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:text="TextView"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textViewnull3"
+            android:id="@+id/doctimeDateAndDatepart_data"
             android:layout_width="match_parent"
             android:layout_height="29dp"
             android:text="TextView"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textViewnull4"
+            android:id="@+id/doctimeMyNum_data"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:text="TextView"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textViewnull5"
+            android:id="@+id/doctimeCurrentNum_data"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:text="TextView"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textViewnull6"
+            android:id="@+id/docRoom_data"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:text="TextView"

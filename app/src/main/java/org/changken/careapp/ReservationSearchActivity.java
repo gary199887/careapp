@@ -61,6 +61,12 @@ public class ReservationSearchActivity extends BaseNavActivity {
         Map<String, String> queryMap = new HashMap<>();
         queryMap.put("view", "Grid%20view");
         queryMap.put("filterByFormula", formula);
+        queryMap.put("sort%5B0%5D%5Bfield%5D", "res_status");
+        queryMap.put("sort%5B0%5D%5Bdirection%5D", "asc");
+        queryMap.put("sort%5B1%5D%5Bfield%5D", "docTime_date");
+        queryMap.put("sort%5B1%5D%5Bdirection%5D", "asc");
+        queryMap.put("sort%5B2%5D%5Bfield%5D", "docTime_dayparts");
+        queryMap.put("sort%5B2%5D%5Bdirection%5D", "asc");
 
         reservationModel.list(queryMap, new ModelCallback<AirTableListResponse<Reservation>>() {
             @Override
