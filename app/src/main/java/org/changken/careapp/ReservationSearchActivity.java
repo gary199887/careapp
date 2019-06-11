@@ -32,8 +32,7 @@ public class ReservationSearchActivity extends BaseNavActivity {
     private List<AirTableResponse<Reservation>> reservationData;
     private String userId;
     private ListView listView;
-    private TextView textView;
-    private Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class ReservationSearchActivity extends BaseNavActivity {
         reservationModel = new ReservationModel();
         reservationData = new ArrayList<>();
         listView = (ListView) findViewById(R.id.list_view);
-        reservationSearchAdapter = new ReservationSearchAdapter(this, reservationData);
+        reservationSearchAdapter = new ReservationSearchAdapter(this, reservationData, reservationModel);
         listView.setAdapter(reservationSearchAdapter);
         userId = Helper.getUserId(this);
 

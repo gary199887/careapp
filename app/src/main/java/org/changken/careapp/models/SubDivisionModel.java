@@ -20,7 +20,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
-public class SubDivisionModel extends BaseModel<SubDivision> {
+public class    SubDivisionModel extends BaseModel<SubDivision> {
 
     private SubDivisionService mSubDivisionService;
 

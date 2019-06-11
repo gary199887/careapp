@@ -7,57 +7,107 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="203dp"
+        android:layout_width="wrap_content"
         android:layout_height="185dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/reservationDivision"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="預約科別: "
             android:textAppearance="?android:textAppearanceLarge" />
 
         <TextView
             android:id="@+id/doctorName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="醫師: "
             android:textAppearance="?android:textAppearanceLarge" />
 
         <TextView
             android:id="@+id/doctimeDateAndDatepart"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="看診時間:  "
             android:textAppearance="?android:textAppearanceLarge" />
 
         <TextView
             android:id="@+id/doctimeMyNum"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我的看診序號:"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:id="@+id/doctimeCurrentNum"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="目前看診序號:"
             android:textAppearance="?android:textAppearanceLarge" />
 
         <TextView
             android:id="@+id/docRoom"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="診間號碼:"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="155dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewnull1"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewnull2"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewnull3"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewnull4"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewnull5"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewnull6"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="TextView"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/cancel"
-        android:layout_width="104dp"
-        android:layout_height="64dp"
+        android:layout_width="59dp"
+        android:layout_height="37dp"
         android:layout_gravity="bottom"
         android:text="取消" />
+
 </LinearLayout>
