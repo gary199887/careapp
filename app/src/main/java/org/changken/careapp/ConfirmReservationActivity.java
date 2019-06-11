@@ -21,21 +21,22 @@ import org.changken.careapp.R;
 
 import java.lang.reflect.Member;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConfirmReservationActivity extends BaseNavActivity {
     private int resCount;
     private int docTime_id;
-
+    private BaseModel<Reservation> reservationModel;
+    private Button confirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         //String date=String.valueOf(intent.getIntExtra(""))
         BaseModel<DoctorTime> docTimeModel = new DoctorTimeModel();
-        BaseModel<Reservation> reservationModel = new ReservationModel();
-
-
+        reservationModel = new ReservationModel();
 
         super.onCreate(savedInstanceState);
         final TextView date = findViewById(R.id.textView3);
@@ -46,7 +47,7 @@ public class ConfirmReservationActivity extends BaseNavActivity {
         //doctor.setText(doctor.getText() + "abvfd");
         final TextView note = findViewById(R.id.textView6);
         //note.setText(note.getText() + "abvfd");
-        final Button confirm = findViewById(R.id.Button02);
+        confirm = findViewById(R.id.Button02);
 
         String recordId = intent.getStringExtra("recordId");
         String userId = intent.getStringExtra("userId");
@@ -59,7 +60,9 @@ public class ConfirmReservationActivity extends BaseNavActivity {
                 doctor.setText(doctor.getText() + response.body().getFields().getDoc_name().get(0), TextView.BufferType.EDITABLE);
                 resCount = response.body().getFields().getDocTime_resCount();
                 docTime_id = response.body().getFields().getDocTime_id();
+                checkIfReservationIsExisted(userId, docTime_id);
             }
+
             @Override
             public void onResponseFailure(Call<AirTableResponse<DoctorTime>> call, Response<AirTableResponse<DoctorTime>> response) {
                 //Toast.makeText(EditProfileActivity.this, "", Toast.LENGTH_SHORT).show();
@@ -83,22 +86,22 @@ public class ConfirmReservationActivity extends BaseNavActivity {
             reservationModel.add(reservation, new ModelCallback<AirTableResponse<Reservation>>() {
                 @Override
                 public void onResponseSuccess(Call<AirTableResponse<Reservation>> call, Response<AirTableResponse<Reservation>> response) {
-                    Toast.makeText(ConfirmReservationActivity.this, "success",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfirmReservationActivity.this, "success", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(ConfirmReservationActivity.this, MemberCenterActivity.class));
                     finish();
                 }
 
                 @Override
                 public void onResponseFailure(Call<AirTableResponse<Reservation>> call, Response<AirTableResponse<Reservation>> response) {
-                    Toast.makeText(ConfirmReservationActivity.this, "failed",Toast.LENGTH_SHORT).show();
-                    for(int i = 0; i < userIdList.size(); i++)
-                        Toast.makeText(ConfirmReservationActivity.this, userIdList.get(i),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfirmReservationActivity.this, "failed", Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < userIdList.size(); i++)
+                        Toast.makeText(ConfirmReservationActivity.this, userIdList.get(i), Toast.LENGTH_SHORT).show();
 
                 }
 
                 @Override
                 public void onFailure(Call<AirTableResponse<Reservation>> call, Throwable t) {
-                    Toast.makeText(ConfirmReservationActivity.this, "failed2",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfirmReservationActivity.this, "failed2", Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -159,8 +162,38 @@ public class ConfirmReservationActivity extends BaseNavActivity {
         };
     }
 
+    private void showToastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected int getMyOwnContentView() {
         return R.layout.activity_confirm_reservation;
+    }
+
+    private void checkIfReservationIsExisted(String idNumber, int doctimeid) {
+        Map<String, String> queryMap = new HashMap<>();
+        queryMap.put("view", "Grid%20view");
+        queryMap.put("filterByFormula", "AND({user_id} = '" + idNumber + "', {docTime_id} = '" + doctimeid +"')");
+        reservationModel.list(queryMap, new ModelCallback<AirTableListResponse<Reservation>>() {
+            @Override
+            public void onResponseSuccess(Call<AirTableListResponse<Reservation>> call, Response<AirTableListResponse<Reservation>> response) {
+                if (response.body().getRecords().size() > 0) {
+                    showToastMessage("已經預約了!");
+                    confirm.setEnabled(false);
+                    confirm.setClickable(false);
+                }
+            }
+
+            @Override
+            public void onResponseFailure(Call<AirTableListResponse<Reservation>> call, Response<AirTableListResponse<Reservation>> response) {
+                showToastMessage("查詢失敗!伺服器回應有些怪怪的~~");
+            }
+
+            @Override
+            public void onFailure(Call<AirTableListResponse<Reservation>> call, Throwable t) {
+                showToastMessage("查詢失敗!可能是網路沒有通唷~");
+            }
+        });
     }
 }
