@@ -29,10 +29,23 @@ public class MobilePayActivity extends BaseNavActivity {
             startActivity(new Intent(MobilePayActivity.this, PaymentRecordActivity.class));
             finish();
         });
+        TextView textView4 = findViewById(R.id.textView7);
+
+        textView4.setOnClickListener((v)-> {
+
+            startActivity(new Intent(MobilePayActivity.this, IWantPayActivity.class));
+            finish();
+        });
         View imageReordLL = findViewById(R.id.imageRecord);
 
         imageReordLL.setOnClickListener((View v) -> {
             startActivity(new Intent(MobilePayActivity.this, ReservationActivity.class));
+            finish();
+        });
+        View imagePayLL = findViewById(R.id.imagePay);
+
+        imagePayLL.setOnClickListener((View v) -> {
+            startActivity(new Intent(MobilePayActivity.this, IWantPayActivity.class));
             finish();
         });
 
