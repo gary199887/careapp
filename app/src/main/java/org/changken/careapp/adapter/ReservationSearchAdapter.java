@@ -81,6 +81,8 @@ public class ReservationSearchAdapter extends ArrayAdapter<AirTableResponse<Rese
             doctimeMyNumData.setTextColor(Color.GRAY);
             doctimeCurrentNumData.setTextColor(Color.GRAY);
             docRoomData.setTextColor(Color.GRAY);
+            cancel.setEnabled(true);
+            cancel.setClickable(true);
         } else if (reservation.getFields().getRes_status() == 1) {
             reservationDivisionData.setTextColor(Color.BLUE);
             doctorNameData.setTextColor(Color.BLUE);
@@ -88,6 +90,8 @@ public class ReservationSearchAdapter extends ArrayAdapter<AirTableResponse<Rese
             doctimeMyNumData.setTextColor(Color.BLUE);
             doctimeCurrentNumData.setTextColor(Color.BLUE);
             docRoomData.setTextColor(Color.BLUE);
+            cancel.setEnabled(false);
+            cancel.setClickable(false);
         } else if (reservation.getFields().getRes_status() == 2) {
             reservationDivisionData.setTextColor(Color.RED);
             doctorNameData.setTextColor(Color.RED);
@@ -95,6 +99,8 @@ public class ReservationSearchAdapter extends ArrayAdapter<AirTableResponse<Rese
             doctimeMyNumData.setTextColor(Color.RED);
             doctimeCurrentNumData.setTextColor(Color.RED);
             docRoomData.setTextColor(Color.RED);
+            cancel.setEnabled(false);
+            cancel.setClickable(false);
         }
 
         return listItemView;
@@ -109,7 +115,6 @@ public class ReservationSearchAdapter extends ArrayAdapter<AirTableResponse<Rese
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
-        Toast.makeText(mContext, "按鈕點擊事件 " + mData.get(position).getId(), Toast.LENGTH_SHORT).show();
 
         mReservationModel.delete(mData.get(position).getId(), new ModelCallback<AirTableDeleteResponse>() {
             @Override

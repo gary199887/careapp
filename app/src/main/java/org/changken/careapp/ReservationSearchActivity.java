@@ -45,7 +45,7 @@ public class ReservationSearchActivity extends BaseNavActivity {
         listView.setAdapter(reservationSearchAdapter);
         userId = Helper.getUserId(this);
 
-        updateReservationList();
+        updateReservationList("{user_id} = '" + userId + "'");
     }
 
     private void updateReservationList() {
