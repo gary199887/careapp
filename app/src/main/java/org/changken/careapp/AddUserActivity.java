@@ -156,6 +156,7 @@ public class AddUserActivity extends AppCompatActivity {
                 //如果筆數大於0，就表示已有該名使用者
                 if (response.body().getRecords().size() > 0) {
                     showToastMessage("已有該使用者了!");
+                    goToLoginPage();
                 } else {
                     addUser(name, idNumber, pw, email, phone, address, birthday);
                 }

@@ -5,7 +5,7 @@
 
     <!--MainActivity-->
     <string name="please_type_all_fields">請輸入所有欄位！</string>
-    <string name="login_failure_input_error">登入失敗!身分證or密碼輸入錯誤!</string>
+    <string name="login_failure_input_error">登入失敗!身分證or密碼輸入錯誤!忘記密碼?</string>
     <string name="login_failure_not_found_error">登入失敗!http回應有誤!</string>
     <string name="login_failure_inner_error">網路問題!</string>
 
