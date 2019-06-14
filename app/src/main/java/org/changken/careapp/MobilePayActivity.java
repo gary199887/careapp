@@ -39,7 +39,7 @@ public class MobilePayActivity extends BaseNavActivity {
         View imageReordLL = findViewById(R.id.imageRecord);
 
         imageReordLL.setOnClickListener((View v) -> {
-            startActivity(new Intent(MobilePayActivity.this, ReservationActivity.class));
+            startActivity(new Intent(MobilePayActivity.this, PaymentRecordActivity.class));
             finish();
         });
         View imagePayLL = findViewById(R.id.imagePay);
